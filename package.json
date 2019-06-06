@@ -1,0 +1,30 @@
+{
+  "name": "whats4dinner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha || true",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madflowerr/Whats4Dinner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madflowerr/Whats4Dinner/issues"
+  },
+  "homepage": "https://github.com/madflowerr/Whats4Dinner#readme"
+}
