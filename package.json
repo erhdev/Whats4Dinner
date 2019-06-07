@@ -12,7 +12,9 @@
     "mysql2": "^1.6.5",
     "sequelize": "^5.8.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  },
   "scripts": {
     "test": "mocha || true",
     "start": "node server.js"
