@@ -22,11 +22,11 @@ Have you ever really been craving a delicious meal at your favorite restuarant, 
 
 ## Technologies Used
 
-* [Frontend]- TBD
-* [Database]- AWS
-* [Express]
-* [Sequelize]
-* [JavaScript]
-* [HTML]
-* [CSS]
-* [jQuery]
+* Frontend- TBD
+* Database- AWS
+* Express
+* Sequelize
+* JavaScript
+* HTML
+* CSS
+* jQuery
