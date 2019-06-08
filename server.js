@@ -1,6 +1,10 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
+// Sets up dotenv
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Sets up the Express App
 var app = express();
 var server = process.env.PORT || 8080;
@@ -15,7 +19,7 @@ app.use(express.json());
 
 // BODY-PARSER
 //Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 //Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //Parse application/json
@@ -29,7 +33,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // ROUTES
-var routes = require("./controllers/api_controllers");
+var routes = require("./controllers/api_controllers")(app);
 
 
 app.use(routes);

@@ -37,6 +37,7 @@ module.exports = app => {
           res.json(dbRestaurant);
       });
     });
+});
 
   //Updates restaurant db when user adds their own restaurant
   router.post("/api/new", function(req, res) {
