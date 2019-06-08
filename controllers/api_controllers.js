@@ -16,7 +16,15 @@ module.exports = app => {
   });
 
   //Route for retrieving entree data for individual restaurant when clicked.
-
+  router.get('/restaurant', function (req, res){
+      models.Restaurant.findOne({
+          where:{
+              id: req.params.id
+          }
+      }).then(function(dbRestaurant){
+          res.json(dbRestaurant);
+      });
+  });
   //Display recipe for selected entree.
 
   //Route for retrieving ingredients data for a recipe.
@@ -31,10 +39,15 @@ module.exports = app => {
     });
 
   //Updates restaurant db when user adds their own restaurant
-  router.post("/api/:id", function(req, res) {
+  router.post("/api/new", function(req, res) {
 
-    db.Restaurant.create(req.body).then(function(dbRestaurant) {
-      res.json(dbRestaurant);
+    db.Restaurant.create({
+        name: req.body.name,
+        category: req.body.category,
+        created_at: req.body.created_at
+    }).then(function(results){
+        //the results would be the newly created restaurant.
+        res.end();
     });
   });
 
