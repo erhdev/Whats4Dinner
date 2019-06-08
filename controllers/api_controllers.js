@@ -1,41 +1,56 @@
-var db = require("../models");
-var express = require('express');
-var router = express.Router();
-// var app = require("../server.js");
+const db = require("../models");
+const router = express.router();
 
-router.get('/', function (req, res) {
-    db.Restaurant.findAll({
-        include: [db.Menu_Item]
-    }).then(function (restaurants) {
-        res.json(restaurants);
-        return restaurants;
+//Utilizes models folder to create our routes.
+module.exports = app => {
+  //Retrieves list of all restaurants and includes the menu items associated with those restaurants.
+  router.get("/", function(req, res) {
+    models.Restaurant.findAll({
+      include: [models.food]
+    }).then(function(entree) {
+      res.render("index", {
+        title: "Here is your recipe",
+        food: food
+      });
+    });
+  });
+
+  //Route for retrieving entree data for individual restaurant when clicked.
+  router.get('/restaurant', function (req, res){
+      models.Restaurant.findOne({
+          where:{
+              id: req.params.id
+          }
+      }).then(function(dbRestaurant){
+          res.json(dbRestaurant);
+      });
+  });
+  //Display recipe for selected entree.
+
+  //Route for retrieving ingredients data for a recipe.
+  router.get('/food/:id', function (req, res){
+      models.Food.findOne({
+          where:{
+              id: req.params.id
+          }
+      }).then(function(dbRestaurant){
+          res.json(dbRestaurant);
+      });
     });
 });
 
-// findAll(table, col, kevin) {
-//     return kevin(res)
-// }
+  //Updates restaurant db when user adds their own restaurant
+  router.post("/api/new", function(req, res) {
 
+    db.Restaurant.create({
+        name: req.body.name,
+        category: req.body.category,
+        created_at: req.body.created_at
+    }).then(function(results){
+        //the results would be the newly created restaurant.
+        res.end();
+    });
+  });
 
-// module.exports = function (app) {
-//     app.get("/", function (req, res) {
-//         db.Restaurant.findAll({
-//             include: [db.Menu_Item]
-//         }).then(function (restaurants) {
-//             res.json(restaurants);
-//             return restaurants;
-//         });
-//     });
-// }
-        //objects: key, value
-        /* 
-        1) The first key-value will be in your database. 
-            { recipe : details of the recipe }
-        2) Grab the key value of recipe from the database and pass it through your route
-            { routeRecipe : recipe(from the database)}
-        3) If you were working with handlebars, 
-            { handlebarsRecipe : routeRecipe || recipe(from the database)}
-        
-        */
-
-module.exports = router;
+//   app.post("/api/CHANGE", function(req, res) {});
+// };
