@@ -1,5 +1,5 @@
 const db = require("../models");
-const router = express.router();
+const router = require('express').router;
 
 //Utilizes models folder to create our routes.
 module.exports = app => {
@@ -37,6 +37,4 @@ module.exports = app => {
       res.json(dbRestaurant);
     });
   });
-
-//   app.post("/api/CHANGE", function(req, res) {});
-// };
+}
