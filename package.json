@@ -14,12 +14,15 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
-    "jest": "^24.8.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "nyc mocha test/restaurants/restaurants.test.js --exit",
     "start": "node server.js"
   },
   "repository": {
