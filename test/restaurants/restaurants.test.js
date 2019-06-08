@@ -1,15 +1,46 @@
-// we will use supertest to test HTTP requests/responses
-const request = require("supertest");
-// we also need our app for the correct routes!
-const app = require("../../controllers/api_controllers");
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const express = require('express');
+const apiRouter = require('../../controllers/api_controllers');
+const should = chai.should();
+chai.use(chaiHttp);
 
 describe("GET /", () => {
-    test("It should respond with all restaurants and categories", async () => {
-        const res = await request(app).get("/");
-        expect(res.body[0]).toHaveProperty("id");
-        expect(res.body[0]).toHaveProperty("restaurant_name");
-        expect(res.body[0]).toHaveProperty("restaurant_category");
-        expect(res.statusCode).toBe(200);
+    let app;
+
+    beforeEach(() => {
+        app = express();
+        app.use('/', apiRouter);
     });
+
+    it("It should respond with an object", done => {
+        chai.request(app)
+            .get('/')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('Object');
+                done();
+            });
+    });
+
+    // it("It should respond with an object", (done) => {
+    //     chai.request(app)
+    //         .get('/restaurant')
+    //         .end((err, res) => {
+    //             res.should.have.status(200);
+    //             res.body.should.be.a('object');
+    //         });
+    //     done();
+    // });
+
+    // it("It should respond with an object", (done) => {
+    //     chai.request(app)
+    //         .get('/food/:id')
+    //         .end((err, res) => {
+    //             res.should.have.status(200);
+    //             res.body.should.be.a('object');
+    //         });
+    //     done();
+    // });
 });
 
