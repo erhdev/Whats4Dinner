@@ -1,40 +1,43 @@
 const db = require("../models");
 const router = require('express').router;
+const express = require('express');
+const router = express.Router();
 
 //Utilizes models folder to create our routes.
-module.exports = app => {
-  //Retrieves list of all restaurants and includes the menu items associated with those restaurants.
-  router.get("/", function(req, res) {
-    models.Restaurant.findAll({
-      include: [models.food]
-    }).then(function(entree) {
-      res.render("index", {
-        title: "Here is your recipe",
-        food: food
-      });
+
+//Retrieves list of all restaurants and includes the menu items associated with those restaurants.
+router.get("/", function (req, res) {
+    db.Restaurant.findAll({
+        include: [db.Menu_Item]
+    }).then(function (menu_item) {
+        res.json({ status: 200, message: menu_item })
     });
-  });
+});
 
-  //Route for retrieving entree data for individual restaurant when clicked.
-
-  //Display recipe for selected entree.
-
-  //Route for retrieving ingredients data for a recipe.
-  router.get('/food/:id', function (req, res){
-      models.Food.findOne({
-          where:{
-              id: req.params.id
-          }
-      }).then(function(dbRestaurant){
-          res.json(dbRestaurant);
-      });
+router.get('/restaurant', function (req, res) {
+    models.Restaurant.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbRestaurant) {
+        res.json(dbRestaurant);
     });
+});
 
-  //Updates restaurant db when user adds their own restaurant
-  router.post("/api/:id", function(req, res) {
-
+router.get('/food/:id', function (req, res) {
+    models.Food.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbRestaurant) {
+        res.json(dbRestaurant);
+    });
+});
     db.Restaurant.create(req.body).then(function(dbRestaurant) {
       res.json(dbRestaurant);
     });
   });
 }
+
+
+module.exports = router;
