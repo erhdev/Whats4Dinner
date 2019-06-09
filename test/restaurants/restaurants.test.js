@@ -22,81 +22,23 @@ describe("GET /", () => {
                 done();
             });
     });
+});
 
-    describe("GET /restaurant", () => {
-        let app;
+describe("GET /restaurant/:id", () => {
+    let app;
 
-        beforeEach(() => {
-            app = express();
-            app.use('/restaurant', apiRouter);
-        });
-
-        it("It should respond with an object", done => {
-            chai.request(app)
-                .get('/restaurant')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('Object');
-                    done();
-                });
-        });
+    beforeEach(() => {
+        app = express();
+        app.use('/restaurant/:id', apiRouter);
     });
 
-    describe("GET /recipe", () => {
-        let app;
-
-        beforeEach(() => {
-            app = express();
-            app.use('/recipe', apiRouter);
-        });
-
-        it("It should respond with an object", done => {
-            chai.request(app)
-                .get('/recipe')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('Object');
-                    done();
-                });
-        });
+    it("It should respond with an object", done => {
+        chai.request(app)
+            .get('/restaurant/:id')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('Object');
+                done();
+            });
     });
-
-    describe("GET /restaurant/:id", () => {
-        let app;
-
-        beforeEach(() => {
-            app = express();
-            app.use('/restaurant/:id', apiRouter);
-        });
-
-        it("It should respond with an object", done => {
-            chai.request(app)
-                .get('/restaurant/:id'restaurant /: id)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('Object');
-                    done();
-                });
-        });
-    });
-
-    describe("GET /recipe/:id", () => {
-        let app;
-
-        beforeEach(() => {
-            app = express();
-            app.use('/recipe/:id', apiRouter);
-        });
-
-        it("It should respond with an object", done => {
-            chai.request(app)
-                .get('/recipe/:id)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('Object');
-                    done();
-                });
-        });
-    });
-
-
+});
