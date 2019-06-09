@@ -14,30 +14,30 @@ router.get("/", function (req, res) {
     });
 });
 
-router.get('/restaurant', function (req, res) {
-    models.Restaurant.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function (dbRestaurant) {
-        res.json(dbRestaurant);
-    });
-});
+// router.get('/restaurant', function (req, res) {
+//     db.Restaurant.findOne({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(function (dbRestaurant) {
+//         res.json(dbRestaurant);
+//     });
+// });
 
-router.get('/food/:id', function (req, res) {
-    models.Food.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function (dbRestaurant) {
-        res.json(dbRestaurant);
-    });
-});
-    db.Restaurant.create(req.body).then(function(dbRestaurant) {
-      res.json(dbRestaurant);
-    });
-  });
-}
+// router.get('/food/:id', function (req, res) {
+//     db.Food.findOne({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(function (dbRestaurant) {
+//         res.json(dbRestaurant);
+//     });
+// });
+//     db.Restaurant.create(req.body).then(function(dbRestaurant) {
+//       res.json(dbRestaurant);
+//     });
+//   });
+// }
 
 
 module.exports = router;
