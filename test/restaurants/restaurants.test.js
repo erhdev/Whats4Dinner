@@ -22,25 +22,23 @@ describe("GET /", () => {
                 done();
             });
     });
-
-    // it("It should respond with an object", (done) => {
-    //     chai.request(app)
-    //         .get('/restaurant')
-    //         .end((err, res) => {
-    //             res.should.have.status(200);
-    //             res.body.should.be.a('object');
-    //         });
-    //     done();
-    // });
-
-    // it("It should respond with an object", (done) => {
-    //     chai.request(app)
-    //         .get('/food/:id')
-    //         .end((err, res) => {
-    //             res.should.have.status(200);
-    //             res.body.should.be.a('object');
-    //         });
-    //     done();
-    // });
 });
 
+describe("GET /restaurant/:id", () => {
+    let app;
+
+    beforeEach(() => {
+        app = express();
+        app.use('/restaurant/:id', apiRouter);
+    });
+
+    it("It should respond with an object", done => {
+        chai.request(app)
+            .get('/restaurant/:id')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('Object');
+                done();
+            });
+    });
+});
