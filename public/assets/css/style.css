@@ -1,0 +1,8 @@
+* {
+    background-image: url('./images/background-image');
+}
+
+#root {
+    background-color: gray;
+    color: white;
+}
