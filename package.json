@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint",
-    "test": "mocha",
+    "test": "nyc mocha --recursive --exit",
     "start": "node server.js"
   },
   "repository": {

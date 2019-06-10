@@ -14,15 +14,15 @@ router.get("/", function (req, res) {
     });
 });
 
-// router.get('/restaurant', function (req, res) {
-//     db.Restaurant.findOne({
-//         where: {
-//             id: req.params.id
-//         }
-//     }).then(function (dbRestaurant) {
-//         res.json(dbRestaurant);
-//     });
-// });
+router.get('/restaurant/:id', function (req, res) {
+    db.Restaurant.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (dbRestaurant) {
+        res.json(dbRestaurant);
+    });
+});
 
 // router.get('/food/:id', function (req, res) {
 //     db.Food.findOne({
