@@ -19,8 +19,8 @@ router.get('/restaurant/:id', function (req, res) {
         where: {
             id: req.params.id
         }
-    }).then(function (dbRestaurant) {
-        res.json(dbRestaurant);
+    }).then(function (res) {
+        res.json({ status: 200, message: res });
     });
 });
 
