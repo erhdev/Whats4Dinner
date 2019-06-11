@@ -12,9 +12,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
-    }).then(function (restaurants) {
-        res.render('index', restaurants);
-        console.log(restaurants)
+    }).then(function (restaurant) {
+        res.render('index', { restaurant: restaurant });
+        // res.json({ status: 200, restaurant: restaurant });
     });
 });
 
@@ -25,7 +25,7 @@ router.get("/restaurant/:id", (req, res) => {
             id: req.params.id
         }
     }).then(result => {
-    
+
         db.Menu_Item.findAll({
             where: {
                 RestaurantId: result.id
@@ -49,7 +49,7 @@ router.get("/menu_item/:id", (req, res) => {
             id: req.params.id
         }
     }).then(result => {
-        res.json({status: 200,message: result});
+        res.json({ status: 200, message: result });
     });
 });
 
