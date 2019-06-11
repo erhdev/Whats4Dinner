@@ -24,7 +24,7 @@ new Vue({
         this.error = "There was an error fetching recipes";
       });
   },
-
+  // we need a way to put the retrived data into this 
   data: {
     error: null,
     recipes: [
