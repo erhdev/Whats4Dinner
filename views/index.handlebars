@@ -1,1 +1,18 @@
 
+<div class="row" id="devoure-row">
+    <div class="col">
+        <h5 class="text-center">Enter Favorite Burger and Devoure!</h5>
+        <ul class="list-group">
+            {{#each customers}}
+                <li class="list-group-item">{{name}}</li>
+
+                <form action='/api/burger/{{id}}' method='post'>
+
+                    <input type='text' name='burger_name' class="form-control" placeholder="Enter Burger Name">
+
+                    <button type="submit" class="btn btn-secondary">Devoure!</button>
+                </form>
+                <br><br>
+            {{/each}}
+        </ul>
+    </div>

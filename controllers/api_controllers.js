@@ -8,35 +8,49 @@ const router = express.Router();
 //Utilizes models folder to create our routes.
 
 
-  //Retrieves list of all restaurants and includes the menu items associated with those restaurants.
-  router.get("/", (req, res) => {
+//Retrieves list of all restaurants and includes the menu items associated with those restaurants.
+router.get("/", (req, res) => {
     db.Restaurant.findAll({
-      include: [db.Menu_Item]
-    }).then(menu_item => {
-      res.render("index", menu_item);
-      console.log(menu_item);
+        include: [db.Menu_Item]
+    }).then(function (menu_item) {
+        res.json({ status: 200, message: menu_item });
     });
-  });
+});
 
-  router.get("/restaurant/:id", (req, res) => {
+router.get("/restaurant/:id", (req, res) => {
+    console.log(req.params);
     db.Restaurant.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(res => {
-      res.json({ status: 200, message: res });
+        where: {
+            id: req.params.id
+        }
+    }).then(result => {
+    
+        db.Menu_Item.findAll({
+            where: {
+                RestaurantId: result.id
+            }
+        }).then(result => {
+            res.json({ status: 200, message: result });
+        });
+
+
+
+
+
+        // console.log(result);
+        // res.json({ status: 200, message: result });
     });
-  });
+});
 
-  router.get("/food/:id", (req, res) => {
-    db.Food.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbRestaurant => {
-      res.json(dbRestaurant);
+router.get("/menu_item/:id", (req, res) => {
+    db.Menu_Item.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(result => {
+        res.json({status: 200,message: result});
     });
-  });
+});
 
 
-  module.exports = router;
+module.exports = router;
