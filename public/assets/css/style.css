@@ -1,0 +1,25 @@
+body {
+    background-image: url('background.jpg');
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    position: relative;
+}
+
+
+h1, h5, li, p {
+    background-color: rgba(143, 143, 172, 0.8);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    font-family: 'Assistant', sans-serif;
+}
+
+.card-panel {
+    border-radius: 20px;
+    align-content: center;
+    font-family: 'Permanent Marker', cursive;
+
+}
