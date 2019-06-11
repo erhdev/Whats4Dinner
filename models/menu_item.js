@@ -1,7 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Menu_Item = sequelize.define('Menu_Item', {
-    menu_item: DataTypes.STRING
+    menu_item: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      notEmpty: true
+    }
   }, {});
   Menu_Item.associate = function(models) {
     // associations can be defined here
