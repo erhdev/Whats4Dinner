@@ -19,7 +19,7 @@ app.use(express.json());
 
 // BODY-PARSER
 //Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(__dirname + "/views"));
+app.use(express.static(__dirname + "/public"));
 //Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //Parse application/json

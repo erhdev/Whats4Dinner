@@ -12,8 +12,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
-    }).then(function (menu_item) {
-        res.json({ status: 200, message: menu_item });
+    }).then(function (restaurants) {
+        res.render('index', restaurants);
+        console.log(restaurants)
     });
 });
 
