@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
         include: [db.Menu_Item]
     }).then(function (menu_item) {
         res.render('index', menu_item);
-        res.json({ status: 200, message: menu_item })
+        console.log(menu_item);
     });
 });
 
