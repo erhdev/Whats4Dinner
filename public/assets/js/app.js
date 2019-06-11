@@ -3,9 +3,9 @@ new Vue({
   template: `
     <div>
         <p v-if="error">{{ error }}</p>
-        <h1>These are the found recipes</h1>
+        <h1 class="center">These are the found recipes</h1>
         <div v-for="recipe in recipes" :key="recipe.id">
-            <p>{{ recipe.name }}</p>
+            <h5 class="center">{{ recipe.name }}</h5>
             <ul>
                 <li v-for="ingredient in recipe.ingredients">{{ ingredient }}</li>
             </ul>
