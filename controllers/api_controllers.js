@@ -1,4 +1,5 @@
 const db = require("../models");
+//const router = require('express').router;
 const express = require('express');
 const router = express.Router();
 
@@ -9,8 +10,7 @@ router.get("/", function (req, res) {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (menu_item) {
-        res.render('index', menu_item);
-        console.log(menu_item);
+        res.json({ status: 200, message: menu_item })
     });
 });
 
@@ -24,16 +24,20 @@ router.get('/restaurant/:id', function (req, res) {
     });
 });
 
-router.get('/food/:id', function (req, res) {
-    db.Food.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function (dbRestaurant) {
-        res.json(dbRestaurant);
-    });
-});
-
+// router.get('/food/:id', function (req, res) {
+//     db.Food.findOne({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(function (dbRestaurant) {
+//         res.json(dbRestaurant);
+//     });
+// });
+//     db.Restaurant.create(req.body).then(function(dbRestaurant) {
+//       res.json(dbRestaurant);
+//     });
+//   });
+// }
 
 
 module.exports = router;
