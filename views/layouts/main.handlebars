@@ -1,36 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>What's4Dinner</title>
-    <!-- Compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link href="https://fonts.googleapis.com/css?family=Assistant|Permanent+Marker&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/assets/css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>What's4Dinner</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </head>
-  <body>
-   {{{ body }}}
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+
+
+</head>
+
+<body>
+  <!-- {{{ body }}} -->
+  <div class="container">
+    <div class="jumbotron jumbotron-fluid text-center">
       <div class="container">
-            <div class="card-panel #00e5ff cyan accent-3 center"><h2 id="title">What's 4 Dinner</h2></div>
+        <h1 class="display-4">What's 4 Dinner</h1>
+        <h6 class="lead">Find out how to make your favorite restaurant recipes from the comfort of your own home!</h6>
       </div>
-        
+    </div>
+  </div>
 
-    <p>Recipes</p>
-    <div class="container">
-      <div id="root"></div>
+
+
+  <div class="container">
+    <div class="choice-row">
+      <div class="col-6">
+        <div class="dropdown" id="categories">
+          <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="category-list"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" id="italian" href="#">Italian</a>
+            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
+            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
+            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-6">
+        <div class="dropdown" id="restaurants">
+          <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="restaurant-list"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Restaurants
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" id="carrabbas" href="#">Carrabba's</a>
+            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
+            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
+            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/assets/js/app.js"></script>
-  </body>
+
+  </div>
+
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="/assets/js/app.js"></script>
+  <script>
+    $('.dropdown-toggle').dropdown()
+  </script>
+
+</body>
+
 </html>
