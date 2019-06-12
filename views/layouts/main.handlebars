@@ -9,6 +9,7 @@
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Arapey|Sigmar+One&display=swap" rel="stylesheet">
 
 
   <link rel="stylesheet" href="/assets/css/style.css" />
@@ -22,7 +23,7 @@
   <div class="container">
     <div class="jumbotron jumbotron-fluid text-center">
       <div class="container">
-        <h1 class="display-4">What's 4 Dinner</h1>
+        <h1 class="display-4" id="title">What's 4 Dinner</h1>
         <h6 class="lead">Find out how to make your favorite restaurant recipes from the comfort of your own home!</h6>
       </div>
     </div>
@@ -32,7 +33,8 @@
 
   <div class="container">
     <div class="choice-row">
-      <div class="col-6">
+      <h3 class="text-center">Choose either a food category or a restaurant below!</h3>
+      <div class="col">
         <div class="dropdown" id="categories">
           <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="category-list"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +50,7 @@
         </div>
 
       </div>
-      <div class="col-6">
+      <div class="col">
         <div class="dropdown" id="restaurants">
           <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="restaurant-list"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +66,24 @@
         </div>
       </div>
     </div>
+    <div class="entree-row">
+      <div class="col">
+        <select class="form-control form-control-lg">
+          <option>Entree</option>
+        </select>
+      </div>
     </div>
+
+    <div class="row text-center" id="recipe-block">
+      <div class="col" id="recipe">
+        <p>Recipe goes here</p>
+      </div>
+      <div class="col" id="ingredients">
+        <p>Ingredients go here</p>
+      </div>
+    </div>
+
+  </div>
 
 
   </div>

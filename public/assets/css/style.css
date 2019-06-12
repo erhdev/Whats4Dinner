@@ -9,27 +9,55 @@ body {
 }
 
 
-h5, li, p, .choice-row {
+h5, li, p {
     background-color: rgba(49, 49, 51, 0.8);
     color: white;
     border-radius: 20px;
     padding: 20px;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Arapey', serif;
+}
+
+.choice-row {
+    background-color: rgba(49, 49, 51, 0.8);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#recipe, #ingredients {
+    background-color: rgba(49, 49, 51, 0.8);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.entree-row {
+    margin: auto;
+    margin-top: 80px;
+    width: 50%;
 }
 
 .jumbotron {
     border-radius: 20px;
     align-content: center;
-    font-family: 'Permanent Marker', cursive;
     background-color: #2A3E00;
     color: #92A277;
     text-shadow: 2px 2px 4px #000000;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.list-group {
+    display: block;
+}
+
 .btn {
     margin: 30px;
     margin-left: 40%;
+}
+
+h1 {
+    font-family: 'Sigmar One', cursive;
 }
 
 #categories {
