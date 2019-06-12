@@ -1,1 +1,9 @@
-
+<div class="row" id="restaurants">
+    <div class="col">
+        <h5 class="text-center">Restaurants</h5>
+        <ul class="list-group">
+            {{#each restaurant}}
+                <li class="list-group-item">{{restaurant_name}}</li>
+            {{/each}}
+        </ul>
+</div>

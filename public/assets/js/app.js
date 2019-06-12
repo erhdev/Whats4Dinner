@@ -1,29 +1,20 @@
+axios.get('/').then(function(data) {
+  console.log(data)
+})
 new Vue({
   el: "#root",
   template: `
     <div>
         <p v-if="error">{{ error }}</p>
-        <h1>These are the found recipes</h1>
+        <h1 class="center">These are the found recipes</h1>
         <div v-for="recipe in recipes" :key="recipe.id">
-            <p>{{ recipe.name }}</p>
+            <h5 class="center">{{ recipe.name }}</h5>
             <ul>
                 <li v-for="ingredient in recipe.ingredients">{{ ingredient }}</li>
             </ul>
         </div>
     </div>
     `,
-
-  created: function() {
-    axios
-      .get("/api/recipes")
-      .then(response => {
-        recipes = response.data;
-      })
-      .catch(err => {
-        console.log(err);
-        this.error = "There was an error fetching recipes";
-      });
-  },
   // we need a way to put the retrived data into this 
   data: {
     error: null,
