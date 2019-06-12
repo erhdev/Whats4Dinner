@@ -16,7 +16,7 @@ module.exports = {
     test: {
         username: process.env.TEST_DB_USER,
         password: process.env.TEST_DB_PASS,
-        database: "TEST_Whats4Dinner_db",
+        database: "test_Whats4Dinner_db",
         host: process.env.TEST_DB_HOST,
         dialect: "mysql",
         insecureAuth: true

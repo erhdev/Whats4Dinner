@@ -7,8 +7,6 @@ router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (restaurant) {
-        //res.render('index', { restaurant: restaurant });
-
         res.json({ status: 200, restaurants: restaurant });
     });
 });
@@ -56,21 +54,5 @@ router.get("/menu_item/:id", (req, res) => {
         res.json({ status: 200, message: result });
     });
 });
-
-//Finds the recipe for the menu item
-//Called when user selects a menu item
-router.get("/menu_item/:id", (req, res) => {
-    db.Menu_Item.findOne({
-        where: {
-            id: req.params.id
-        },
-        include: {
-            model: db.Recipe
-        }
-    }).then(result => {
-        res.json({ status: 200, message: result });
-    });
-});
-
 
 module.exports = router;
