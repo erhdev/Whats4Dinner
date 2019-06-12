@@ -1,3 +1,4 @@
+{{#if restaurant}}
 <div class="row" id="restaurants">
     <div class="col">
         <h5 class="text-center">Restaurants</h5>
@@ -7,3 +8,35 @@
             {{/each}}
         </ul>
 </div>
+{{/if}}
+
+{{#if menu_item}}
+<div class="row" id="menu_items">
+    <div class="col">
+        <h5 class="text-center">Restaurants</h5>
+        <ul class="list-group">
+            {{#each menu_item}}
+                <li class="list-group-item">{{menu_item}}</li>
+            {{/each}}
+        </ul>
+</div>
+{{/if}}
+
+{{#if ingredient}}
+{{! For each ingredient, display in unordered list.
+
+Then display the instruction(s).
+}}
+<div class='row' id='ingredients'>
+        <div class="col">
+        <h5 class="text-center">Ingredients</h5>
+        <ul class="list-group">
+            {{#each ingredient}}
+                <li class="list-group-item">{{ingredient}}</li>
+            {{/each}}
+        </ul>
+        <p>{{ instruction }}</p>
+{{!Depending on how the instructions display I will need to pass it into a function that splits it based on periods.}}
+
+</div>
+{{/if}}
