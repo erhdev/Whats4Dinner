@@ -22,6 +22,26 @@ module.exports = {
       restaurant_category: 'Chinese',
       createdAt: new Date(),
       updatedAt: new Date()
+    }, {
+      restaurant_name: 'Olive Garden',
+      restaurant_category: 'Italian',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      restaurant_name: 'Bojangles',
+      restaurant_category: 'Southern Comfort',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      restaurant_name: 'Crab Shack',
+      restaurant_category: 'Seafood',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      restaurant_name: `P.F. Chang's`,
+      restaurant_category: 'Chinese',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }]);
 
     const restaurants = await queryInterface.sequelize.query(
@@ -47,6 +67,26 @@ module.exports = {
     }, {
       menu_item: 'Orange Chicken',
       RestaurantId: restaurantRows[3].id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      menu_item: 'Lasgana',
+      RestaurantId: restaurantRows[4].id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      menu_item: 'Fried Chicken',
+      RestaurantId: restaurantRows[5].id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      menu_item: 'Grilled Salmon',
+      RestaurantId: restaurantRows[6].id,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      menu_item: 'Teriyaki Chicken',
+      RestaurantId: restaurantRows[7].id,
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
@@ -361,7 +401,135 @@ Add chicken to skillet; toss to coat. Serve with rice.’, ‘16 ounces frozen p
       MenuItemId: menu_item_Rows[3].id,
       createdAt: new Date(),
       updatedAt: new Date()
-    }]);
+      }, {
+        ingredient: '9 lasgana noodles',
+        instruction: null,
+        MenuItemId: menu_item_Rows[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1 medium onion, diced',
+        instruction: null,
+        MenuItemId: menu_item_Rows[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1-1/4 pounds bulk Italian sausage',
+        instruction: null,
+        MenuItemId: menu_item_Rows[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '3 garlic cloves, minced',
+        instruction: null,
+        MenuItemId: menu_item_Rows[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: null,
+        instruction: `Cook noodles according to package directions; drain. Meanwhile, in a Dutch oven, cook sausage, beef and onion over medium heat 8-10 minutes or until meat is no longer pink, breaking up meat into crumbles. Add garlic; cook 1 minute. Drain.
+Stir in tomatoes, tomato paste, water, sugar, 3 tablespoons parsley, basil, fennel, 1/2 teaspoon salt and pepper; bring to a boil. Reduce heat; simmer, uncovered, 30 minutes, stirring occasionally.
+In a small bowl, mix egg, ricotta cheese, and remaining parsley and salt.
+Preheat oven to 375�. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese. Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full).
+Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. Let stand 15 minutes before serving.`,
+        MenuItemId: menu_item_Rows[4].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '9 chicken breasts',
+        instruction: null,
+        MenuItemId: menu_item_Rows[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1 cup flower',
+        instruction: null,
+        MenuItemId: menu_item_Rows[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1 cup canola oil',
+        instruction: null,
+        MenuItemId: menu_item_Rows[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '3 garlic cloves, minced',
+        instruction: null,
+        MenuItemId: menu_item_Rows[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: null,
+        instruction: `Cut the whole chickens into 4 breasts, 4 thighs, 4 legs and 4 wings and set aside.
+Preheat your oil, in either a heavy pan on the stove or a deep-fryer, to 325 degrees F.
+In a large bowl, combine the flour, salt, black pepper, garlic powder, onion powder and cayenne pepper until thoroughly mixed. Set aside.
+Pour the buttermilk into another bowl large enough for the chicken to be immersed in the buttermilk.
+Prepare your dredging station. Place your chicken in a bowl. Next to that, your bowl of buttermilk, and next to that, your dry mixture.
+Take your breasts, lightly dust them with your flour mixture, then dip them in the buttermilk until they are coated, and then place them in the flour mixture.
+Take the breasts that are in the flour mixture and aggressively push the flour mixture into the wet chicken. Make sure that the chicken in very thoroughly coated, or you will not achieve the crust and crunch you are looking for. Gently place the breasts in your hot oil.
+Next, repeat the dredging steps with your other pieces of chicken in this order: thigh, leg then wing.
+When you place the last wing into the fryer, you should have 16 pieces of chicken in the oil. Set a timer for 15 minutes.
+After 15 minutes, take a probe thermometer and check the temperature of a breast. If it reads 180 degrees F, all of your chicken is done. (Keep in mind that it will continue to cook after it has been removed from the fryer.)
+Remove the chicken from the oil and let it drain for 5 minutes. Let cool for an additional 10 minutes before serving.`,
+        MenuItemId: menu_item_Rows[5].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '2 pounds salmon',
+        instruction: null,
+        MenuItemId: menu_item_Rows[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1/2 cup olive oil',
+        instruction: null,
+        MenuItemId: menu_item_Rows[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: 'seasoning of choice',
+        instruction: null,
+        MenuItemId: menu_item_Rows[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: null,
+        instruction: `Season salmon fillets with lemon pepper, garlic powder, and salt.
+In a small bowl, stir together soy sauce, brown sugar, water, and vegetable oil until sugar is dissolved. Place fish in a large resealable plastic bag with the soy sauce mixture, seal, and turn to coat. Refrigerate for at least 2 hours.
+Preheat grill for medium heat.
+Lightly oil grill grate. Place salmon on the preheated grill, and discard marinade. Cook salmon for 6 to 8 minutes per side, or until the fish flakes easily with a fork.`,
+        MenuItemId: menu_item_Rows[6].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '2 pounds chicken',
+        instruction: null,
+        MenuItemId: menu_item_Rows[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1/2 cup soy sauce',
+        instruction: null,
+        MenuItemId: menu_item_Rows[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: '1 cup teriyaki sauce',
+        instruction: null,
+        MenuItemId: menu_item_Rows[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        ingredient: null,
+        instruction: `Heat cooking oil in a large pan over medium heat. Stir fry chicken, stirring occasionally until lightly browned and crisp.
+In a small jug or bowl whisk together the soy sauce, sugar, Sake/vinegar, Mirin and sesame oil to combine. Set aside.
+Add the garlic to the centre of the pan and saute until lightly fragrant (about 30 seconds). Pour in the sauce and allow to cook, while stirring, until the sauce thickens into a beautiful shiny glaze (about 2-3 minutes).*
+Add in the steamed broccoli. Garnish with green onion (or shallot) slices and serve over steamed rice.`,
+        MenuItemId: menu_item_Rows[7].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }]);
   },
 
   down: (queryInterface, Sequelize) => {
