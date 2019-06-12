@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (restaurant) {
-        res.json({ status: 200, restaurants: restaurant });
+        res.json(restaurant);
     });
 });
 
