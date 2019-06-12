@@ -3,23 +3,45 @@ body {
     background-color: #cccccc;
     height: 500px;
     background-position: center;
-    background-repeat: repeat-y;
+    background-repeat: repeat;
     background-size: cover;
     position: relative;
 }
 
 
-h1, h5, li, p {
-    background-color: rgba(143, 143, 172, 0.8);
+h5, li, p, .choice-row {
+    background-color: rgba(49, 49, 51, 0.8);
     color: white;
     border-radius: 20px;
     padding: 20px;
     font-family: 'Assistant', sans-serif;
 }
 
-.card-panel {
+.jumbotron {
     border-radius: 20px;
     align-content: center;
     font-family: 'Permanent Marker', cursive;
+    background-color: #2A3E00;
+    color: #92A277;
+    text-shadow: 2px 2px 4px #000000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+.btn {
+    margin: 30px;
+    margin-left: 40%;
+}
+
+#categories {
+    align-content: center;
+    float: left;
+    margin: auto;
+    width: 50%;
+}
+
+#restaurants {
+    align-content: cetner;
+    float: right; 
+    margin: auto;
+    width: 50%;
 }
