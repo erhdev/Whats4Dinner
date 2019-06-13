@@ -7,10 +7,10 @@ router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (result) {
-        //var data = {result: restaurant}
+        // var data = {result: restaurant}
         //res.json(result);
         res.json({ status: 200, message: result });
-        //res.render('index' , data);
+        // res.render('index' , data);
     });
 });
 
@@ -24,8 +24,8 @@ router.get("/restaurant/:id", (req, res) => {
             model: db.Menu_Item
         }
     }).then(result => {
-        //var data = {restaurant: result}
-        //res.render('index' , data);
+        // var data = {restaurant: result}
+        // res.render('index' , data);
         res.json({ status: 200, message: result });
     });
 });
@@ -40,8 +40,8 @@ router.get("/category/:category", (req, res) => {
             model: db.Menu_Item
         }
     }).then(result => {
-        //var data = {categories: result}
-        //res.render('index' , data);
+        // var data = {categories: result}
+        // res.render('index' , data);
         console.log(result);
         res.json({ status: 200, message: result });
     });
@@ -58,21 +58,21 @@ router.get("/menu_item/:id", (req, res) => {
             model: db.Recipe
         }
     }).then(result => {
-        //var data = {data: result}
-        //res.render('index' , data);
+        // var data = {data: result}
+        // res.render('index' , data);
         res.json({ status: 200, message: result });
     });
 });
 
 //POST route to create/add a restaurant.
-app.post("/api/restaurant", function (req, res) {
+router.post("/api/restaurant", function (req, res) {
     db.Restaurant.create(req.body).then(result => res.json({ status: 200 })).catch(err => {
         console.log(err);
     });
 });
 
 //POST route to create/add a menu_item.
-app.post("/api/menu_item/:id", function (req, res) {
+router.post("/api/menu_item/:id", function (req, res) {
     db.Burger.create({
         ...req.body,
         RestaurantId: req.params.id
