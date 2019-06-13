@@ -1,23 +1,49 @@
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const express = require('express');
-// const apiRouter = require('../../controllers/api_controllers');
-// const should = chai.should();
-// chai.use(chaiHttp);
+//process.env.NODE_ENV = 'test';
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const db = require('../../models');
+const express = require('express');
+const apiRouter = require('../../controllers/api_controllers');
+//const should = chai.should();
+const expect = chai.expect;
+const server = require('../../server');
+// Setting up the chai http plugin
+chai.use(chaiHttp);
 
-// describe("GET /menu_item/:id", () => {
-//     let app;
-//     beforeEach(() => {
-//         app = express();
-//         app.use('/menu_item/:id', apiRouter);
-//     });
-//     it("It should respond with an object and a 200 status", done => {
-//         chai.request(app)
-//             .get('/menu_item/:id')
-//             .end((err, res) => {
-//                 res.should.have.status(200);
-//                 res.body.should.be.a('Object');
-//                 done();
-//             });
-//     });
-// });
+let request;
+
+describe("GET /menu_item/:id", function () {
+    // Before each test begins, create a new request server for testing
+    // & delete all examples from the db
+    beforeEach(function () {
+        request = chai.request(server);
+        return db.sequelize.sync({ force: true });
+    });
+
+    it("should find the first menu item", function (done) {
+        // Add some examples to the db to test with
+        db.Menu_Item.bulkCreate([
+            { menu_item: "First Item"},
+            { menu_item: "Second Item" }
+        ]).then(function () {
+            // Request the route that returns all examples
+            request.get("/menu_item/1").end(function (err, res) {
+                var responseStatus = res.status;
+                var responseBody = res.body;
+
+                // Run assertions on the response
+
+                expect(err).to.be.null;
+
+                expect(responseStatus).to.equal(200);
+
+                expect(responseBody.message)
+                    .to.be.an("object")
+                    .that.includes({ menu_item: "First Item" });
+
+                // The `done` function is used to end any asynchronous tests
+                done();
+            });
+        });
+    });
+});

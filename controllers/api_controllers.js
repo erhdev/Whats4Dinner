@@ -6,9 +6,10 @@ const router = express.Router();
 router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
-    }).then(function (restaurant) {
+    }).then(function (result) {
         //var data = {result: restaurant}
-        res.json(result);
+        //res.json(result);
+        res.json({ status: 200, message: result });
         //res.render('index' , data);
     });
 });
@@ -60,6 +61,23 @@ router.get("/menu_item/:id", (req, res) => {
         //var data = {data: result}
         //res.render('index' , data);
         res.json({ status: 200, message: result });
+    });
+});
+
+//POST route to create/add a restaurant.
+app.post("/api/restaurant", function (req, res) {
+    db.Restaurant.create(req.body).then(result => res.json({ status: 200 })).catch(err => {
+        console.log(err);
+    });
+});
+
+//POST route to create/add a menu_item.
+app.post("/api/menu_item/:id", function (req, res) {
+    db.Burger.create({
+        ...req.body,
+        RestaurantId: req.params.id
+    }).then(result => res.json({ status: 200 })).catch(err => {
+        console.log(err);
     });
 });
 
