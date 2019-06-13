@@ -7,10 +7,11 @@ router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (result) {
-        // var data = {result: restaurant}
+         var data = {restaurant: result}
         //res.json(result);
-        res.json({ status: 200, message: result });
-        // res.render('index' , data);
+       // res.json({ status: 200, message: result });
+         res.render('index' , data);
+         console.log(result);
     });
 });
 
@@ -40,10 +41,10 @@ router.get("/category/:category", (req, res) => {
             model: db.Menu_Item
         }
     }).then(result => {
-        // var data = {categories: result}
-        // res.render('index' , data);
-        console.log(result);
-        res.json({ status: 200, message: result });
+        var data = {categories: result}
+        res.render('index' , data);
+        //console.log(result);
+        //res.json({ status: 200, message: result });
     });
 });
 

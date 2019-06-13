@@ -29,7 +29,10 @@
   "scripts": {
     "lint": "eslint",
     "test": "nyc mocha --recursive --exit",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "sequelize db:seed:all",
+    "exorcise": "nodemon server.js"
+    
   },
   "repository": {
     "type": "git",
