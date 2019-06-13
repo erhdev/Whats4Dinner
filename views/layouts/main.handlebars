@@ -19,7 +19,6 @@
 </head>
 
 <body>
-   {{{ body }}} 
   <div class="container">
     <div class="jumbotron jumbotron-fluid text-center">
       <div class="container">
@@ -42,10 +41,9 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" id="italian" href="#">Italian</a>
-            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
-            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
-            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+            {{#each restaurant_category}}
+            <a class='dropdown-item' href='#'>{{restaurant_category}}</a>
+            {{/each}}
           </div>
         </div>
 
@@ -58,10 +56,10 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" id="carrabbas" href="#">Carrabba's</a>
-            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
-            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
-            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+            {{#each restaurant}}
+            <a class='dropdown-item' href='#'>{{restaurant_name}}</a>
+            <br>
+            {{/each}}
           </div>
         </div>
       </div>
@@ -134,8 +132,6 @@
 
 
   </div>
-
-
 
 
 
