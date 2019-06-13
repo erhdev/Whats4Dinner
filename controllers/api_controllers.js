@@ -66,19 +66,25 @@ router.get("/menu_item/:id", (req, res) => {
 
 //POST route to create/add a restaurant.
 router.post("/api/restaurant", function (req, res) {
-    db.Restaurant.create(req.body).then(result => res.json({ status: 200 })).catch(err => {
-        console.log(err);
-    });
+    db.Restaurant.create(req.body)
+        .then(result =>
+            res.json({ status: 200, result: result }))
+        .catch(err => {
+            //console.log(err);
+        });
 });
 
 //POST route to create/add a menu_item.
 router.post("/api/menu_item/:id", function (req, res) {
-    db.Burger.create({
+    db.Menu_Item.create({
         ...req.body,
         RestaurantId: req.params.id
-    }).then(result => res.json({ status: 200 })).catch(err => {
-        console.log(err);
-    });
+    })
+        .then(result =>
+            res.json({ status: 200 }))
+        .catch(err => {
+            console.log(err);
+        });
 });
 
 module.exports = router;
