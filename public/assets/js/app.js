@@ -1,18 +1,12 @@
+$('.dropdown-toggle').dropdown()
 
-
-$('#southern').on('click' , function() {
-  $.get(`/categories/${$(this).val().trim}`)
-});
-$('#italian').on('click' , function() {
-  $.get(`/categories/${$(this).val().trim}`)
-});
-$('#chinese').on('click' , function() {
-  $.get(`/categories/${$(this).val().trim}`)
-});
-$('#seafood').on('click' , function() {
-  $.get(`/categories/${$(this).val().trim}`)
-});
-
-axios.get('/').then(function(data) {
-  console.log(data)
+var dropdownItem = $('.dropdown-item')
+dropdownItem.click(function(){
+  var route = $(this).text().trim();
+  if ($(this).parent().text === 'Category') {
+    $.get('/categories/' + route)
+  }
+  if ($(this).parent().text === 'Resturant') {
+    $.get('/restaurant/' + route)
+  } 
 })

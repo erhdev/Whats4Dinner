@@ -40,3 +40,15 @@ Then display the instruction(s).
 
 </div>
 {{/if}}
+
+{{#if categories}}
+<div class="row" id="menu_items">
+    <div class="col">
+        <h5 class="text-center">Recipies by Category</h5>
+        <ul class="list-group">
+            {{#each category}}
+                <li class="list-group-item">{{category}}</li>
+            {{/each}}
+        </ul>
+</div>
+{{/if}}
