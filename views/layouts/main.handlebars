@@ -19,7 +19,6 @@
 </head>
 
 <body>
-   {{{ body }}} 
   <div class="container">
     <div class="jumbotron jumbotron-fluid text-center">
       <div class="container">
@@ -37,15 +36,12 @@
       <div class="col">
         <div class="dropdown" id="categories">
           <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="category-list"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Category
-          </a>
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" id="italian" href="#">Italian</a>
-            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
-            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
-            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+            {{#each restaurant}}
+            <a class='dropdown-item' href='#'>{{restaurant_category}}</a>
+            {{/each}}
           </div>
         </div>
 
@@ -53,15 +49,13 @@
       <div class="col">
         <div class="dropdown" id="restaurants">
           <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="restaurant-list"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Restaurants
-          </a>
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants</a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" id="carrabbas" href="#">Carrabba's</a>
-            <a class="dropdown-item" id="southern" href="#">Southern Comfort</a>
-            <a class="dropdown-item" id="seafood" href="#">Seafood</a>
-            <a class="dropdown-item" id="chinese" href="#">Chinese</a>
+            {{#each restaurant}}
+            <a class='dropdown-item' href='#'>{{restaurant_name}}</a>
+            <br>
+            {{/each}}
           </div>
         </div>
       </div>
@@ -69,8 +63,10 @@
 
     <div class="entree-row">
       <div class="col" id="entree">
+        
         <select class="form-control form-control-lg">
-          <option>Entree</option>
+          Entrees
+          <!-- entree choices populate here -->
         </select>
       </div>
     </div>
@@ -81,18 +77,19 @@
 
       <!-- One "tab" for each step in the form: -->
       <div class="tab">Restaurant:
-        <p><input placeholder="Restaurant name..." oninput="this.className = ''"></p>
+        <p><input id = "newRestaurant" placeholder="Restaurant name..." oninput="this.className = ''"><br><br>
+        <input id="newRestaurantCat" placeholder="Cateogry of Restaurant" oninput="this.className = ''"></p>
       </div>
 
       <div class="tab">Menu item:
-        <p><input placeholder="Menu item..." oninput="this.className = ''"></p>
+        <p><input id= "newMenuItem" placeholder="Menu item..." oninput="this.className = ''"></p>
       </div>
 
       <div class="tab">Instructions:
-        <p><input placeholder="Step 1..." oninput="this.className = ''"></p>
-        <p><input placeholder="Step 2..." oninput="this.className = ''"></p>
-        <p><input placeholder="Step 3..." oninput="this.className = ''"></p>
-        <p><input placeholder="Ingredients..." oninput="this.className = ''"></p>
+        <p><input placeholder="Step 1..." oninput="this.className = ''" id = "stepOne"></p>
+        <p><input placeholder="Step 2..." oninput="this.className = ''" id = "stepTwo"></p>
+        <p><input placeholder="Step 3..." oninput="this.className = ''" id = "stepThree"></p>
+        <p><input placeholder="Ingredients..." oninput="this.className = ''" id = "ingredientsInput"></p>
       </div>
 
       <div style="overflow:auto;">
@@ -115,11 +112,11 @@
     <div class="row text-center" id="recipe-block">
       <div class="col" id="recipe">
         <p>Recipe goes here</p>
-        {{{ body }}}
+        {{instruction}}
       </div>
       <div class="col" id="ingredients">
         <p>Ingredients go here</p>
-        {{{ body }}}
+        {{ingredients}}
       </div>
     </div>
 
@@ -134,8 +131,6 @@
 
 
   </div>
-
-
 
 
 
