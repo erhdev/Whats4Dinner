@@ -1,8 +1,5 @@
 //Global variables
-const axios = require("axios");
-let ingredient = "chicken";
 const apiKey = "17451c0032296d12482577496344c284";
-const url = `https://www.food2fork.com/api/get?key=${apiKey}q=${ingredient}`;
 const options = {
   method: "GET",
   headers: {
@@ -11,11 +8,11 @@ const options = {
   }
 };
 
-
-  $("#apiSubmit").on("click", function(event) {
-    let ingredient = $(this).data("api-entry");
+$("#apiSubmit").click(function () {
+  event.preventDefault();
+  var ingredient = $("#apiSearchEntry").val();
     axios
-      .get(`https://www.food2fork.com/api/get?key=${apiKey}q=${ingredient}`, options)
+      .get(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`, options)
       .then(response => {
         console.log(response);
       })
