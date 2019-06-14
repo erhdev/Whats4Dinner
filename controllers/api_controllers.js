@@ -7,11 +7,11 @@ router.get("/", (req, res) => {
     db.Restaurant.findAll({
         include: [db.Menu_Item]
     }).then(function (result) {
-         var data = {restaurant: result}
+        var data = { restaurant: result }
         //res.json(result);
-       // res.json({ status: 200, message: result });
-         res.render('index' , data);
-         console.log(result);
+        // res.json({ status: 200, message: result });
+        res.render('index', data);
+        //console.log(result);
     });
 });
 
@@ -43,7 +43,6 @@ router.get("/category/:category", (req, res) => {
     }).then(result => {
         //var data = {categories: result}
         //res.render('index' , data);
-        //console.log(result);
         res.json({ status: 200, message: result });
     });
 });
@@ -59,28 +58,42 @@ router.get("/menu_item/:name", (req, res) => {
             model: db.Recipe
         }
     }).then(result => {
+
         //var data = {menu_item: result}
         //res.render('index' , data);
         res.json({ status: 200, message: result });
+
+
     });
 });
 
+
 //POST route to create/add a restaurant.
 router.post("/api/restaurant", function (req, res) {
+    restaurantId = req.body.id;
     db.Restaurant.create(req.body)
         .then(result =>
             res.json({ status: 200, result: result }))
         .catch(err => {
-            //console.log(err);
+            throw err;
         });
 });
 
 //POST route to create/add a menu_item.
-router.post("/api/menu_item/:id", function (req, res) {
-    db.Menu_Item.create({
-        ...req.body,
-        RestaurantId: req.params.id
-    })
+router.post("/api/menu_item/:restaurant_id", function (req, res) {
+    //console.log(req.body);
+    db.Menu_Item.create(req.body)
+        .then(result =>
+            res.json({ status: 200, result: result}))
+        .catch(err => {
+            console.log(err);
+        });
+});
+
+//POST route to create/add a recipe.
+router.post("/api/recipe/:menu_item_id", function (req, res) {
+    console.log(req.body);
+    db.Recipe.create(req.body)
         .then(result =>
             res.json({ status: 200 }))
         .catch(err => {

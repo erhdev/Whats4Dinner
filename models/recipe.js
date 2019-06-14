@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Recipe = sequelize.define('Recipe', {
     ingredient: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       notEmpty: true
     },
     instruction: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       notEmpty: true
     }
   }, {});
