@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Menu_Item = sequelize.define('Menu_Item', {
     menu_item: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       notEmpty: true
     }
   }, {});
