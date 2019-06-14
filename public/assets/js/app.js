@@ -3,46 +3,48 @@ $('.dropdown-toggle').dropdown()
 
 var dropdownItem = $('.dropdown-item')
 var entree = $('.form-control');
+
 dropdownItem.click(function () {
 
+  //Displays entree choices upon selecting a category.
   if ($(this).parent().siblings().text() === 'Category') {
     $.get(`/category/${$(this).text()}`, function (res) {
+      console.log(res);
       console.log(res.message[0].Menu_Items[0].menu_item)
       for (i = 0; i < res.message.length; i++) {
         for (j = 0; j < res.message[i].Menu_Items.length; j++)
           var currentEntree = res.message[i].Menu_Items[j].menu_item;
          entree.append(`<option class='entree-options'>${currentEntree}</option>`)
-
       }
     })
-
   }
+
+  //Displays entree choices upon selecting a restaurant.
   if ($(this).parent().siblings().text() === 'Restaurants') {
     $.get(`/restaurant/${$(this).text()}`, function (res) {
       console.log(res)
       var entree = $('.form-control');
-      entree.empty();
       for (i = 0; i < 1; i++) {
         for (j = 0; j < res.message.Menu_Items.length; j++)
           var currentEntree = res.message.Menu_Items[j].menu_item;
           entree.append(`<option class='entree-options'>${currentEntree}</option>`)
       }
     })
-
-
   }
   $('#entree').show()
+  // entree.empty();
 });
 
 
-
-entree.change(function(){
+//Displays recipe and ingredients upon selecting an entree.
+entree.change(function() {
   $.get(`/menu_item/${$(this).val()}` , function(res) {
     $('#ingredients').append('<ul id="ingredient-list">')
+    console.log(res.message);
     for (let i = 0; i < res.message.Recipes.length; i++){
       let ingredient = res.message.Recipes[i].ingredient;
-      console.log(ingredient);
-      if(!ingredient) {
+      // console.log(ingredient);
+      if(ingredient == null) {
         $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
       } else {
         $('#ingredient-list').append(`<li>${ingredient}</li>`);
@@ -51,6 +53,7 @@ entree.change(function(){
     $('#ingredients').show();
     $('#recipe').show();
   })
+  entree.empty();
 })
 
 //functionality for adding restaurant info form
