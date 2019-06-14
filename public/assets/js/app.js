@@ -10,8 +10,8 @@ dropdownItem.click(function () {
       for (i = 0; i < res.message.length; i++) {
         for (j = 0; j < res.message[i].Menu_Items.length; j++)
           var currentEntree = res.message[i].Menu_Items[j].menu_item;
-          var entree = $('.form-control');
-          entree.append(`<option>${currentEntree}</option>`)
+        var entree = $('.form-control');
+        entree.append(`<option>${currentEntree}</option>`)
       }
     })
 
@@ -24,10 +24,10 @@ dropdownItem.click(function () {
       for (i = 0; i < 1; i++) {
         for (j = 0; j < res.message.Menu_Items.length; j++)
           var currentEntree = res.message.Menu_Items[j].menu_item;
-          entree.append(`<option>${currentEntree}</option>`)
+        entree.append(`<option>${currentEntree}</option>`)
       }
     })
-     
+
 
   }
   $('#entree').show()
@@ -35,9 +35,9 @@ dropdownItem.click(function () {
 
 var options = $('option');
 
-options.click(function(){
+options.click(function () {
   console.log('yeet')
-  $.get(`/menu_item/${$(this).text()}` , function(res) {
+  $.get(`/menu_item/${$(this).text()}`, function (res) {
     console.log(res)
   })
 })
@@ -115,3 +115,60 @@ function fixStepIndicator(n) {
   //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
+
+//functionality for creating post routes for new items
+var nextCount = 3;
+var restaurantId = 0;
+var menu_item_Id = 0;
+$("#nextBtn").click(function () {
+  if (nextCount === 3) {
+    nextCount -= 1;
+    var newRestaurant = {
+      restaurant_name: $("#newRestaurant").val(),
+      restaurant_category: $("#newRestaurantCat").val()
+    }
+    $.post("api/restaurant", newRestaurant).then(function (result) {
+      restaurantId = result.result.id;
+    }).catch(error => { throw error });
+  } else if (nextCount === 2) {
+    nextCount -= 1;
+    var newMenu_Item = {
+      menu_item: $("#newMenuItem").val(),
+      RestaurantId: restaurantId
+    }
+    $.post(`/api/menu_item/${restaurantId}`, newMenu_Item).then(function (result) {
+      console.log(result);
+      menu_item_Id = result.result.id;
+    }).catch(error => { throw error });
+  }
+  else if (nextCount === 1) {
+    nextCount = 3;
+    var ingList = $("#ingredientsInput").val().split(','); //note to Kevin: was let and worked
+
+    for (var i = 0; i < ingList.length; i++) {
+      var newIng = ingList[i];
+      var newIngredient = {
+        ingredient: newIng,
+        instruction: null,
+        MenuItemId: menu_item_Id
+      };
+      $.post("api/recipe/:menu_item_id", newIngredient).then(function () {
+      }).catch(error => { throw error });
+    }
+    var instructionOne = $('#stepOne').val();
+    var instructionTwo = $('#stepTwo').val();
+    var instructionThree = $('#stepThree').val();
+    var instructionArr = [instructionOne, instructionTwo, instructionThree];
+
+    for (var i = 0; i < instructionArr.length; i++) {
+      var newInst = instructionArr[i];
+      var newInstruction = {
+        ingredient: null,
+        instruction: newInst,
+        MenuItemId: menu_item_Id
+      };
+      $.post("api/recipe/:menu_item_id", newInstruction).then(function () {
+        }).catch(error => { throw error });
+    }
+  }
+});
