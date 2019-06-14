@@ -10,7 +10,7 @@ dropdownItem.click(function(){
   }
   if ($(this).parent().text() === 'Resturant') {
     $.get('/restaurant/' + route)
-    
+
   } 
 });
 

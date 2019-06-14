@@ -41,7 +41,7 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            {{#each restaurant_category}}
+            {{#each restaurant}}
             <a class='dropdown-item' href='#'>{{restaurant_category}}</a>
             {{/each}}
           </div>
@@ -113,11 +113,11 @@
     <div class="row text-center" id="recipe-block">
       <div class="col" id="recipe">
         <p>Recipe goes here</p>
-        {{{ body }}}
+        {{instruction}}
       </div>
       <div class="col" id="ingredients">
         <p>Ingredients go here</p>
-        {{{ body }}}
+        {{ingredients}}
       </div>
     </div>
 
