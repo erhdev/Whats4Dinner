@@ -70,7 +70,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
-      menu_item: 'Lasgana',
+      menu_item: 'Lasagna',
       RestaurantId: restaurantRows[4].id,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -430,7 +430,7 @@ Add chicken to skillet; toss to coat. Serve with rice.’, ‘16 ounces frozen p
         instruction: `Cook noodles according to package directions; drain. Meanwhile, in a Dutch oven, cook sausage, beef and onion over medium heat 8-10 minutes or until meat is no longer pink, breaking up meat into crumbles. Add garlic; cook 1 minute. Drain.
 Stir in tomatoes, tomato paste, water, sugar, 3 tablespoons parsley, basil, fennel, 1/2 teaspoon salt and pepper; bring to a boil. Reduce heat; simmer, uncovered, 30 minutes, stirring occasionally.
 In a small bowl, mix egg, ricotta cheese, and remaining parsley and salt.
-Preheat oven to 375�. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese. Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full).
+Preheat oven to 375�. Spread 2 cups meat sauce into an ungreased 13x9-in. baking dish. Layer with 3 noodles and a third of the ricotta mixture. Sprinkle with 1 cup mozzarella cheese and 2 tablespoons Parmesan cheese. Repeat layers twice. Top with remaining meat sauce and cheeses (dish will be full).
 Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. Let stand 15 minutes before serving.`,
         MenuItemId: menu_item_Rows[4].id,
         createdAt: new Date(),

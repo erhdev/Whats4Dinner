@@ -11,8 +11,8 @@ const options = {
   }
 };
 
-$(function() {
-  $("#searchSubmit").on("click", function(event) {
+
+  $("#apiSubmit").on("click", function(event) {
     let ingredient = $(this).data("api-entry");
     axios
       .get(url, options)
@@ -23,4 +23,3 @@ $(function() {
         console.log(error);
       });
   });
-});
