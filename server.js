@@ -39,7 +39,7 @@ var routes = require("./controllers/api_controllers");
 app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({ force: false }).then(function () {
     app.listen(server, function () {
         console.log("App listening on PORT " + server);
     });
