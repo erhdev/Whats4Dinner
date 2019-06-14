@@ -2,7 +2,7 @@
 $('.dropdown-toggle').dropdown()
 
 var dropdownItem = $('.dropdown-item')
-var entree = $('.form-control');
+var entree = $('.entree-form-control ');
 
 dropdownItem.click(function () {
 
@@ -23,7 +23,7 @@ dropdownItem.click(function () {
   if ($(this).parent().siblings().text() === 'Restaurants') {
     $.get(`/restaurant/${$(this).text()}`, function (res) {
       console.log(res)
-      var entree = $('.form-control');
+      var entree = $('.entree-form-control ');
       for (i = 0; i < 1; i++) {
         for (j = 0; j < res.message.Menu_Items.length; j++)
           var currentEntree = res.message.Menu_Items[j].menu_item;
