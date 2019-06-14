@@ -32,7 +32,8 @@
     "test": "nyc mocha --recursive --exit",
     "start": "node server.js",
     "seed": "sequelize db:seed:all",
-    "exorcise": "nodemon server.js"
+    "exorcise": "nodemon server.js",
+    "killall": "killall -9 node"
   },
   "repository": {
     "type": "git",

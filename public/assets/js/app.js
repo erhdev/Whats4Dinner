@@ -2,6 +2,7 @@
 $('.dropdown-toggle').dropdown()
 
 var dropdownItem = $('.dropdown-item')
+var entree = $('.form-control');
 dropdownItem.click(function () {
 
   if ($(this).parent().siblings().text() === 'Category') {
@@ -11,7 +12,7 @@ dropdownItem.click(function () {
         for (j = 0; j < res.message[i].Menu_Items.length; j++)
           var currentEntree = res.message[i].Menu_Items[j].menu_item;
           var entree = $('.form-control');
-          entree.append(`<option>${currentEntree}</option>`)
+          entree.append(`<option class='entree-options'>${currentEntree}</option>`)
       }
     })
 
@@ -24,7 +25,7 @@ dropdownItem.click(function () {
       for (i = 0; i < 1; i++) {
         for (j = 0; j < res.message.Menu_Items.length; j++)
           var currentEntree = res.message.Menu_Items[j].menu_item;
-          entree.append(`<option>${currentEntree}</option>`)
+          entree.append(`<option class='entree-options'>${currentEntree}</option>`)
       }
     })
      
@@ -33,12 +34,22 @@ dropdownItem.click(function () {
   $('#entree').show()
 });
 
-var options = $('option');
 
-options.click(function(){
-  console.log('yeet')
-  $.get(`/menu_item/${$(this).text()}` , function(res) {
-    console.log(res)
+
+entree.change(function(){
+  $.get(`/menu_item/${$(this).val()}` , function(res) {
+    $('#ingredients').append('<ul id="ingredient-list">')
+    for (let i = 0; i < res.message.Recipes.length; i++){
+      let ingredient = res.message.Recipes[i].ingredient;
+      console.log(ingredient);
+      if(!ingredient) {
+        $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
+      } else {
+        $('#ingredient-list').append(`<li>${ingredient}</li>`);
+      }
+    }
+    $('#ingredients').show();
+    $('#recipe').show();
   })
 })
 
