@@ -3,15 +3,17 @@ $('.dropdown-toggle').dropdown()
 
 var dropdownItem = $('.dropdown-item')
 dropdownItem.click(function(){
-  var route = $(this).text().trim();
-  if ($(this).parent().text() === 'Category') {
-    $.get('/categories/' + route);
+
+  if ($(this).parent().siblings().text() === 'Category') {
+    $.get(`/category/${$(this).text()}`, function(res){
+      console.log(res) 
+    })
     
   }
-  if ($(this).parent().text() === 'Resturant') {
-    $.get('/restaurant/' + route)
-
-  } 
+  if ($(this).parent().siblings().text() === 'Restaurants') {
+    
+  }
+  $('#entree').show() 
 });
 
 //functionality for adding restaurant info form
