@@ -39,6 +39,10 @@ h5, li {
     width: 50%;
 }
 
+#entree {
+  display: none;
+}
+
 .jumbotron {
     border-radius: 20px;
     align-content: center;

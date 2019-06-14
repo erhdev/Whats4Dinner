@@ -17,17 +17,17 @@ router.get("/", (req, res) => {
 
 //Finds all menu items from a restaurant
 //Called when user chooses to search all menu_items from a restaurant
-router.get("/restaurant/:id", (req, res) => {
+router.get("/restaurant/:name", (req, res) => {
     db.Restaurant.findOne({
         where: {
-            id: req.params.id
+            restaurant_name: req.params.name
         }, include: {
             model: db.Menu_Item
         }
     }).then(result => {
-        var data = {restaurant: result}
-        res.render('index' , data);
-        //res.json({ status: 200, message: result });
+       // var data = {restaurant: result}
+        //res.render('index' , data);
+        res.json({ status: 200, message: result });
     });
 });
 
@@ -41,27 +41,29 @@ router.get("/category/:category", (req, res) => {
             model: db.Menu_Item
         }
     }).then(result => {
-        var data = { categories: result }
-        res.render('index', data);
-        //console.log(result);
-        //res.json({ status: 200, message: result });
+        //var data = {categories: result}
+        //res.render('index' , data);
+        res.json({ status: 200, message: result });
     });
 });
 
 //Finds the recipe for the menu item
 //Called when user selects a menu item
-router.get("/menu_item/:id", (req, res) => {
+router.get("/menu_item/:name", (req, res) => {
     db.Menu_Item.findOne({
         where: {
-            id: req.params.id
+            menu_item: req.params.name
         },
         include: {
             model: db.Recipe
         }
     }).then(result => {
-        var data = { menu_item: result }
-        res.render('index', data);
-        //res.json({ status: 200, message: result });
+
+        //var data = {menu_item: result}
+        //res.render('index' , data);
+        res.json({ status: 200, message: result });
+
+
     });
 });
 

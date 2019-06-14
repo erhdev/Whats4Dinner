@@ -2,17 +2,45 @@
 $('.dropdown-toggle').dropdown()
 
 var dropdownItem = $('.dropdown-item')
-dropdownItem.click(function(){
-  var route = $(this).text().trim();
-  if ($(this).parent().text() === 'Category') {
-    $.get('/categories/' + route);
-    
-  }
-  if ($(this).parent().text() === 'Resturant') {
-    $.get('/restaurant/' + route)
+dropdownItem.click(function () {
 
-  } 
+  if ($(this).parent().siblings().text() === 'Category') {
+    $.get(`/category/${$(this).text()}`, function (res) {
+      console.log(res.message[0].Menu_Items[0].menu_item)
+      for (i = 0; i < res.message.length; i++) {
+        for (j = 0; j < res.message[i].Menu_Items.length; j++)
+          var currentEntree = res.message[i].Menu_Items[j].menu_item;
+          var entree = $('.form-control');
+          entree.append(`<option>${currentEntree}</option>`)
+      }
+    })
+
+  }
+  if ($(this).parent().siblings().text() === 'Restaurants') {
+    $.get(`/restaurant/${$(this).text()}`, function (res) {
+      console.log(res)
+      var entree = $('.form-control');
+      entree.empty();
+      for (i = 0; i < 1; i++) {
+        for (j = 0; j < res.message.Menu_Items.length; j++)
+          var currentEntree = res.message.Menu_Items[j].menu_item;
+          entree.append(`<option>${currentEntree}</option>`)
+      }
+    })
+     
+
+  }
+  $('#entree').show()
 });
+
+var options = $('option');
+
+options.click(function(){
+  console.log('yeet')
+  $.get(`/menu_item/${$(this).text()}` , function(res) {
+    console.log(res)
+  })
+})
 
 //functionality for adding restaurant info form
 var currentTab = 0; // Current tab is set to be the first tab (0)
