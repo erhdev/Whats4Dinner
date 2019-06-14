@@ -8,15 +8,18 @@ const options = {
   }
 };
 
-$("#apiSubmit").click(function () {
+$("#apiSubmit").click(function() {
   event.preventDefault();
   var ingredient = $("#apiSearchEntry").val();
-    axios
-      .get(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`, options)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  });
+  axios
+    .get(
+      `https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`,
+      options
+    )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
