@@ -25,8 +25,8 @@ router.get("/restaurant/:id", (req, res) => {
             model: db.Menu_Item
         }
     }).then(result => {
-        var data = { restaurant: result }
-        res.render('index', data);
+        var data = {restaurant: result}
+        res.render('index' , data);
         //res.json({ status: 200, message: result });
     });
 });
