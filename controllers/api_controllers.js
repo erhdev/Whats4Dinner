@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     }).then(function (result) {
         var data = { restaurant: result }
         //res.json(result);
-        // res.json({ status: 200, message: result });
+        res.json({ status: 200, message: result });
         res.render('index', data);
         //console.log(result);
     });
@@ -92,10 +92,9 @@ router.post("/api/menu_item/:restaurant_id", function (req, res) {
 
 //POST route to create/add a recipe.
 router.post("/api/recipe/:menu_item_id", function (req, res) {
-    console.log(req.body);
     db.Recipe.create(req.body)
         .then(result =>
-            res.json({ status: 200 }))
+            res.json({ status: 200, result: result }))
         .catch(err => {
             console.log(err);
         });
