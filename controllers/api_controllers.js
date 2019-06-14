@@ -17,10 +17,10 @@ router.get("/", (req, res) => {
 
 //Finds all menu items from a restaurant
 //Called when user chooses to search all menu_items from a restaurant
-router.get("/restaurant/:id", (req, res) => {
+router.get("/restaurant/:name", (req, res) => {
     db.Restaurant.findOne({
         where: {
-            id: req.params.id
+            restaurant_name: req.params.name
         }, include: {
             model: db.Menu_Item
         }
@@ -50,10 +50,10 @@ router.get("/category/:category", (req, res) => {
 
 //Finds the recipe for the menu item
 //Called when user selects a menu item
-router.get("/menu_item/:id", (req, res) => {
+router.get("/menu_item/:name", (req, res) => {
     db.Menu_Item.findOne({
         where: {
-            id: req.params.id
+            menu_item: req.params.name
         },
         include: {
             model: db.Recipe
