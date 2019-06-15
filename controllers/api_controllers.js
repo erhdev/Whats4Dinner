@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('../models');
 const router = express.Router();
 
+
 // Retrieves list of all restaurants and includes the menu items associated with those restaurants.
 router.get('/', (req, res) => {
   db.Restaurant.findAll({
@@ -98,6 +99,7 @@ router.post('/api/recipe/:menu_item_id', (req, res) => {
     .catch(err => {
       console.log(err);
     });
+
 });
 
 module.exports = router;

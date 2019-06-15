@@ -11,6 +11,7 @@ module.exports = {
         database: "Whats4Dinner_db",
         host: process.env.DB_HOST,
         dialect: "mysql",
+        logging: false
         
     },
     test: {
@@ -19,6 +20,7 @@ module.exports = {
         database: "test_Whats4Dinner_db",
         host: process.env.TEST_DB_HOST,
         dialect: "mysql",
+        logging: false,
         //insecureAuth: true
     },
     production: {

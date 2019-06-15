@@ -13,6 +13,8 @@ dotenv.config();
 const app = express();
 const server = process.env.PORT || 8080;
 
+//var isForce = process.env.NODE_ENV = 'test' ? true : false;
+
 // Requiring our models for syncing
 const db = require('./models');
 
@@ -39,10 +41,11 @@ const routes = require('./controllers/api_controllers');
 app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(server, () => {
-    console.log(`App listening on PORT ${server}`);
-  });
+
+db.sequelize.sync({ force: true }).then(function () {
+    app.listen(server, function () {
+        console.log("App listening on PORT " + server);
+    });
 });
 
 module.exports = app;

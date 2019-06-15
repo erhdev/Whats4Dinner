@@ -12,6 +12,7 @@ $("#apiSubmit").click(function() {
   event.preventDefault();
   console.log("Submit clicked");
   var ingredient = $("#apiSearchEntry").val();
+
     axios
       .get(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`, options)
       .then(response => {
@@ -31,3 +32,4 @@ $("#apiSubmit").click(function() {
       });
       $("#apiResults").show();
   });
+
