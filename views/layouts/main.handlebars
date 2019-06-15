@@ -65,7 +65,7 @@
 
     <div class="entree-row">
       <div class="col" id="entree">
-        
+
         <select class="entree-form-control form-control-lg">
           <option value="selected disabled">Entree Choices</option>
           <!-- entree choices populate here -->
@@ -79,12 +79,12 @@
 
       <!-- One "tab" for each step in the form: -->
       <div class="tab">Restaurant:
-        <p><input id = "newRestaurant" placeholder="Restaurant name..." oninput="this.className = ''"><br><br>
-        <input id="newRestaurantCat" placeholder="Cateogry of Restaurant" oninput="this.className = ''"></p>
+        <p><input id="newRestaurant" placeholder="Restaurant name..." oninput="this.className = ''"><br><br>
+          <input id="newRestaurantCat" placeholder="Category of Restaurant" oninput="this.className = ''"></p>
       </div>
 
       <div class="tab">Menu item:
-        <p><input id= "newMenuItem" placeholder="Menu item..." oninput="this.className = ''"></p>
+        <p><input id="newMenuItem" placeholder="Menu item..." oninput="this.className = ''"></p>
       </div>
 
       <div class="tab">Instructions:
@@ -125,20 +125,24 @@
 
     <!--Search using food2fork api-->
     <div class="row">
-      <div class="col" id="api-entry">
+      <div class="col-8" id="api-entry">
         <input class="form-control form-control-lg" type="text"
-          placeholder="Don't see what you want? Enter your craving..." id = "apiSearchEntry">
-          <button type="submit" class="btn btn-primary" id="apiSubmit">Submit</button>
+          placeholder="Don't see what you want? Enter your craving..." id="apiSearchEntry">
+        <button type="submit" class="btn btn-primary" id="apiSubmit">Submit</button>
       </div>
     </div>
 
-  </div>
+
 
     <div class="row">
-      <div class="col" id="apiResults">
-        <!--Recipe search api results populate here-->
+      <div class="col text-center">
+        <div id="apiResults">
+          <!--Recipe search api results populate here-->
+        </div>
       </div>
     </div>
+  </div>
+
   </div>
 
 
@@ -153,7 +157,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/api.js"></script>
   <script>
