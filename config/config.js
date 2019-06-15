@@ -29,6 +29,6 @@ module.exports = {
     database: 'Whats4Dinner_db',
     host: process.env.DB_HOST,
     dialect: 'mysql',
-    insecureAuth: true,
-  },
+    insecureAuth: true
+  }
 };
