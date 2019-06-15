@@ -20,6 +20,7 @@
     "sinon": "^7.3.2"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
     "chai-http": "^4.3.0",
