@@ -62,34 +62,34 @@ describe("GET /menu_item/:name", function () {
             });
         });
     });
-    it("should return an error", function (done) {
-        // Add some examples to the db to test with
-        db.Menu_Item.bulkCreate([
-            { menu_item: "First" },
-            { menu_item: "Second" },
-            { menu_item: "_abc"}
-        ]).then(function () {
-            // Request the route that returns all examples
-            request.get("/menu_item/_abc").end(function (err, res) {
-                var responseStatus = res.status;
-                var responseBody = res.body;
-                console.log(res.body);
+    // it("should return an error", function (done) {
+    //     // Add some examples to the db to test with
+    //     db.Menu_Item.bulkCreate([
+    //         { menu_item: "First" },
+    //         { menu_item: "Second" },
+    //         { menu_item: "_abc"}
+    //     ]).then(function () {
+    //         // Request the route that returns all examples
+    //         request.get("/menu_item/_abc").end(function (err, res) {
+    //             var responseStatus = res.status;
+    //             var responseBody = res.body;
+    //             console.log(res.body);
 
-                // Run assertions on the response
+    //             // Run assertions on the response
 
-                expect(err).to.not.be.null;
+    //             expect(err).to.not.be.null;
 
-                expect(responseStatus).to.equal(500);
+    //             expect(responseStatus).to.equal(500);
 
-                // expect(responseBody.message)
-                //     .to.be.an("object")
-                //     .that.includes({ menu_item: "First" });
+    //             // expect(responseBody.message)
+    //             //     .to.be.an("object")
+    //             //     .that.includes({ menu_item: "First" });
 
-                // The `done` function is used to end any asynchronous tests
-                done();
-            });
-        });
-    });
+    //             // The `done` function is used to end any asynchronous tests
+    //             done();
+    //         });
+    //     });
+    // });
 });
 
 describe("POST /api/menu_item/:restaurant_id", function () {
