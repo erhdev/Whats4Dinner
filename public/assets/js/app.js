@@ -20,6 +20,7 @@ dropdownItem.click(function () {
   ) {
     $.get(`/category/${$(this).text()}`, res => {
       console.log(res);
+      console.log(res.message[0].Menu_Items[0].menu_item);
       for (i = 0; i < res.message.length; i++) {
         for (j = 0; j < res.message[i].Menu_Items.length; j++) {
           const currentEntree = res.message[i].Menu_Items[j].menu_item;
@@ -50,22 +51,19 @@ dropdownItem.click(function () {
       }
     });
   }
-  $('#entree').show().val('#null-option');
-  entree.empty().append('<option value="selected disabled" id="null-option">Entree Choices</option>');
+  $('#entree').show();
   // entree.empty();
-
 });
 
 // Displays recipe and ingredients upon selecting an entree.
 entree.change(function () {
-  $('#ingredients').empty();
-  $('#recipe').empty();
   $.get(`/menu_item/${$(this).val()}`, res => {
     $('#ingredients').append('<ul id="ingredient-list">');
     console.log(res.message);
     for (let i = 0; i < res.message.Recipes.length; i++) {
-      const {ingredient} = res.message.Recipes[i];
-      if (!ingredient || ingredient === 'null') {
+      const { ingredient } = res.message.Recipes[i];
+      // console.log(ingredient);
+      if (ingredient == null) {
         $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
       } else {
         $('#ingredient-list').append(`<li>${ingredient}</li>`);
@@ -74,8 +72,7 @@ entree.change(function () {
     $('#ingredients').show();
     $('#recipe').show();
   });
-  
-
+  entree.empty();
 });
 
 function fixStepIndicator(n) {
@@ -126,7 +123,7 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value === '') {
+    if (y[i].value == '') {
       // add an "invalid" class to the field:
       y[i].className += ' invalid';
       // and set the current valid status to false:
@@ -212,7 +209,7 @@ $('#nextBtn').click(() => {
         MenuItemId: menu_item_Id,
       };
       $.post('api/recipe/:menu_item_id', newIngredient)
-        .then(() => {})
+        .then(() => { })
         .catch(error => {
           throw error;
         });
@@ -230,7 +227,9 @@ $('#nextBtn').click(() => {
         MenuItemId: menu_item_Id,
       };
       $.post('api/recipe/:menu_item_id', newInstruction)
-        .then(() => {})
+        .then(() => {
+          $('#regForm').empty().append('<h2>Thanks for adding your recipe!</h2><br><h4>Refresh the page to see it listed.</h4>')
+        })
         .catch(error => {
           throw error;
         });
