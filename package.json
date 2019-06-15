@@ -1,0 +1,54 @@
+{
+  "name": "whats4dinner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "bulma": "^0.7.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars-helpers": "^0.10.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
+    "sequelize": "^5.8.9",
+    "sequelize-cli": "^5.4.0",
+    "sequelize-mocking": "^2.0.0",
+    "sinon": "^7.3.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.2.0",
+    "chai-dom": "^1.8.1",
+    "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "sequelize-test-helpers": "^1.1.2",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "test": "cross-env NODE_ENV=test nyc mocha --recursive --exit",
+    "start": "node server.js",
+    "seed": "sequelize db:seed:all",
+    "exorcise": "nodemon server.js",
+    "killall": "killall -9 node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madflowerr/Whats4Dinner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madflowerr/Whats4Dinner/issues"
+  },
+  "homepage": "https://github.com/madflowerr/Whats4Dinner#readme"
+}

@@ -1,0 +1,5 @@
+services:
+  - mysql
+
+  before_install:
+  - mysql -e 'CREATE DATABASE test_Whats4Dinner_db;'

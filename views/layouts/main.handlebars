@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>What's4Dinner</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Arapey|Sigmar+One&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron jumbotron-fluid text-center">
+      <div class="container">
+        <h1 class="display-4" id="title">What's 4 Dinner</h1>
+        <h6 class="lead">Find out how to make your favorite restaurant recipes from the comfort of your own home!</h6>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+
+    <!--Category and Restaurant drop downs display here-->
+    <div class="choice-row">
+      <h4 class="text-center">Choose either a food category or a restaurant below!</h4>
+      <div class="col">
+        <div class="dropdown" id="categories">
+          <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="category-list"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {{#each restaurant}}
+            <a class='dropdown-item' href='#'>{{ restaurant_category }}</a>
+            {{/ each}}
+          </div>
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="dropdown" id="restaurants">
+          <a class="btn btn-secondary dropdown-toggle btn-lg" href="#" role="button" id="restaurant-list"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restaurants</a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {{#each restaurant}}
+            <a class='dropdown-item' href='#'>{{ restaurant_name }}</a>
+            <br>
+            {{/ each}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entree-row">
+      <div class="col" id="entree">
+
+        <select class="form-control form-control-lg" id="select-entree">
+          <option value="selected disabled" id='null-option'>Entree Choices</option>
+          <!-- entree choices populate here -->
+        </select>
+      </div>
+    </div>
+
+    <form id="regForm" action="">
+
+      <h5 class="text-center">Or, add your own here...</h5>
+
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab">Restaurant:
+        <p><input id="newRestaurant" placeholder="Restaurant name..." oninput="this.className = ''"><br><br>
+          <input id="newRestaurantCat" placeholder="Category of Restaurant" oninput="this.className = ''"></p>
+      </div>
+
+      <div class="tab">Menu item:
+        <p><input id="newMenuItem" placeholder="Menu item..." oninput="this.className = ''"></p>
+      </div>
+
+      <div class="tab">Instructions:
+        <p><input placeholder="Step 1..." oninput="this.className = ''" id="stepOne"></p>
+        <p><input placeholder="Step 2..." oninput="this.className = ''" id="stepTwo"></p>
+        <p><input placeholder="Step 3..." oninput="this.className = ''" id="stepThree"></p>
+        <p><input placeholder="Ingredients..." oninput="this.className = ''" id="ingredientsInput"></p>
+      </div>
+
+      <div style="overflow:auto;">
+        <div style="float:right;">
+          <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+      </div>
+
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+      </div>
+
+    </form>
+
+    <!--Recipe and ingredients from database populate here-->
+    <div class="row text-center" id="recipe-block">
+      <div class="col" id="recipe">
+        <h3>Recipe</h3>
+        {{ instruction }}
+      </div>
+      <div class="col" id="ingredients">
+        <h3>Ingredients</h3>
+        {{ ingredients }}
+      </div>
+    </div>
+
+    <!--Search using food2fork api-->
+    <div class="row">
+      <div class="col-8" id="api-entry">
+        <input class="form-control form-control-lg" type="text"
+          placeholder="Don't see what you want? Enter your craving..." id="apiSearchEntry">
+        <button type="submit" class="btn btn-primary" id="apiSubmit">Submit</button>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col text-center">
+        <div id="apiResults">
+          <!--Recipe search api results populate here-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/apikey.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script>
+    $('.dropdown-toggle').dropdown()
+  </script>
+
+</body>
+
+</html>
