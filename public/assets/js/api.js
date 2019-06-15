@@ -12,7 +12,6 @@ $("#apiSubmit").click(function() {
   event.preventDefault();
   console.log("Submit clicked");
   var ingredient = $("#apiSearchEntry").val();
-<<<<<<< HEAD
     axios
       .get(`https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`, options)
       .then(response => {
@@ -32,17 +31,3 @@ $("#apiSubmit").click(function() {
       });
       $("#apiResults").show();
   });
-=======
-  axios
-    .get(
-      `https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`,
-      options
-    )
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-});
->>>>>>> 3114aa482a1051dcc161ed24dac6705dec792e21
