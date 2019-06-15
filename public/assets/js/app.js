@@ -20,7 +20,6 @@ dropdownItem.click(function () {
   ) {
     $.get(`/category/${$(this).text()}`, res => {
       console.log(res);
-      console.log(res.message[0].Menu_Items[0].menu_item);
       for (i = 0; i < res.message.length; i++) {
         for (j = 0; j < res.message[i].Menu_Items.length; j++) {
           const currentEntree = res.message[i].Menu_Items[j].menu_item;
@@ -51,19 +50,22 @@ dropdownItem.click(function () {
       }
     });
   }
-  $('#entree').show();
+  $('#entree').show().val('#null-option');
+  entree.empty().append('<option value="selected disabled" id="null-option">Entree Choices</option>');
   // entree.empty();
+
 });
 
 // Displays recipe and ingredients upon selecting an entree.
 entree.change(function () {
+  $('#ingredients').empty();
+  $('#recipe').empty();
   $.get(`/menu_item/${$(this).val()}`, res => {
     $('#ingredients').append('<ul id="ingredient-list">');
     console.log(res.message);
     for (let i = 0; i < res.message.Recipes.length; i++) {
-      const { ingredient } = res.message.Recipes[i];
-      // console.log(ingredient);
-      if (ingredient == null) {
+      const {ingredient} = res.message.Recipes[i];
+      if (!ingredient || ingredient === 'null') {
         $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
       } else {
         $('#ingredient-list').append(`<li>${ingredient}</li>`);
@@ -72,7 +74,8 @@ entree.change(function () {
     $('#ingredients').show();
     $('#recipe').show();
   });
-  entree.empty();
+  
+
 });
 
 function fixStepIndicator(n) {
