@@ -1,5 +1,5 @@
 //Global variables
-const apiKey = key.API_KEY;
+const apiKey = "c09b3e51cf34eefb52153e61aaba7013";
 const options = {
   method: "GET",
   headers: {
