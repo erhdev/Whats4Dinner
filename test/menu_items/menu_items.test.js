@@ -69,32 +69,38 @@ describe("POST /api/menu_item/:restaurant_id", function () {
 
     it("should save a menu item", function (done) {
         // Create an object to send to the endpoint
-        var reqBody = {
-            menu_item: "menuItem",
-            RestaurantId: 1
-        };
+        db.Restaurant.bulkCreate([
+            { restaurant_name: "First Restaurant", restaurant_category: "First Cateogry" },
+            { restaurant_name: "Second Restaurant", restaurant_category: "Second Cateogry" }
+        ]).then(function () {
+            var reqBody = {
+                menu_item: "menuItem",
+                RestaurantId: 1
+            };
 
-        // POST the request body to the server
-        request
-            .post("/api/menu_item/1")
-            .send(reqBody)
-            .end(function (err, res) {
-                var responseStatus = res.body.status;
-                var responseBody = res.body.result;
+            // POST the request body to the server
+            request
+                .post("/api/menu_item/1")
+                .send(reqBody)
+                .end(function (err, res) {
+                    var responseStatus = res.body.status;
+                    var responseBody = res.body.result;
 
-                // Run assertions on the response
+                    // Run assertions on the response
 
-                expect(err).to.be.null;
+                    expect(err).to.be.null;
 
-                expect(responseStatus).to.equal(200);
+                    expect(responseStatus).to.equal(200);
 
-                expect(responseBody)
-                    .to.be.an("object")
-                    .that.includes(reqBody);
+                    expect(responseBody)
+                        .to.be.an("object")
+                        .that.includes(reqBody);
 
-                // The `done` function is used to end any asynchronous tests
-                done();
-            });
+                    // The `done` function is used to end any asynchronous tests
+                    done();
+                });
+        });
     });
+    
 });
 

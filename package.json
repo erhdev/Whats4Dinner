@@ -21,7 +21,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-dom": "^1.8.1",
     "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
@@ -30,7 +32,7 @@
   },
   "scripts": {
     "lint": "eslint",
-    "test": "nyc mocha --recursive --exit",
+    "test": "cross-env NODE_ENV=test nyc mocha --recursive --exit",
     "start": "node server.js",
     "seed": "sequelize db:seed:all",
     "exorcise": "nodemon server.js",

@@ -19,32 +19,43 @@ describe("POST /api/recipe/:menu_item_id", function () {
 
     it("should save a recipe", function (done) {
         // Create an object to send to the endpoint
-        var reqBody = {
-            ingredient: "ingredient",
-            instruction: "instruction",
-            MenuItemId: 1
-        };
+        db.Restaurant.bulkCreate([
+            { restaurant_name: "First Restaurant", restaurant_category: "First Cateogry" },
+            { restaurant_name: "Second Restaurant", restaurant_category: "Second Cateogry" }
+        ]).then(function () {
+            db.Menu_Item.bulkCreate([
+                { menu_item: "First" },
+                { menu_item: "Second" }
+            ]).then(function () {
 
-        // POST the request body to the server
-        request
-            .post("/api/recipe/1")
-            .send(reqBody)
-            .end(function (err, res) {
-                var responseStatus = res.body.status;
-                var responseBody = res.body.result;
+                var reqBody = {
+                    ingredient: "ingredient",
+                    instruction: "instruction",
+                    MenuItemId: 1
+                };
 
-                // Run assertions on the response
+                // POST the request body to the server
+                request
+                    .post("/api/recipe/1")
+                    .send(reqBody)
+                    .end(function (err, res) {
+                        var responseStatus = res.body.status;
+                        var responseBody = res.body.result;
 
-                expect(err).to.be.null;
+                        // Run assertions on the response
 
-                expect(responseStatus).to.equal(200);
+                        expect(err).to.be.null;
 
-                expect(responseBody)
-                    .to.be.an("object")
-                    .that.includes(reqBody);
+                        expect(responseStatus).to.equal(200);
 
-                // The `done` function is used to end any asynchronous tests
-                done();
+                        expect(responseBody)
+                            .to.be.an("object")
+                            .that.includes(reqBody);
+
+                        // The `done` function is used to end any asynchronous tests
+                        done();
+                    });
             });
+        });
     });
 });

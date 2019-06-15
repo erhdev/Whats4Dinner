@@ -9,8 +9,9 @@ router.get("/", (req, res) => {
     }).then(function (result) {
         var data = { restaurant: result }
         //res.json(result);
-        res.json({ status: 200, message: result });
+        //res.json({ status: 200, message: result });
         res.render('index', data);
+        return data;
         //console.log(result);
     });
 });
