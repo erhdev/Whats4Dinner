@@ -42,6 +42,12 @@ h5 {
     width: 50%;
 }
 
+.recipe-images {
+  display: inline-block;
+  width: 30%;
+  height: auto;
+}
+
 #entree {
   display: none;
 }
@@ -83,7 +89,12 @@ h1 {
 }
 
 #api-entry {
+    margin: 40px auto;
     margin-top: 20px;
+}
+
+#apiSubmit {
+  margin: 20px auto;
 }
 
 /* Style the form */
