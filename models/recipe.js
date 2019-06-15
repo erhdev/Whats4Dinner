@@ -1,5 +1,8 @@
+/* eslint-disable strict */
+/* eslint-disable lines-around-directive */
+/* eslint-disable comma-dangle */
 'use strict';
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Recipe = sequelize.define('Recipe', {
     ingredient: {
       type: DataTypes.STRING,
@@ -12,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       notEmpty: true
     }
   }, {});
-  Recipe.associate = function(models) {
+  Recipe.associate = (models) => {
     // associations can be defined here
     Recipe.belongsTo(models.Menu_Item);
   };

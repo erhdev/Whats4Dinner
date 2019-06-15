@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../models');
+
 const router = express.Router();
 
 // Retrieves list of all restaurants and includes the menu items associated with those restaurants.
@@ -82,7 +83,7 @@ router.get('/menu_item/:name', (req, res) => {
 
 // POST route to create/add a restaurant.
 router.post('/api/restaurant', (req, res) => {
-  let restaurantId = req.body.id;
+  // const restaurantId = req.body.id;
   db.Restaurant.create(req.body)
     .then(result => res.json({ status: 200, result }))
     .catch((err) => {

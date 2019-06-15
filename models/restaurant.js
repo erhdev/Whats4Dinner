@@ -1,3 +1,7 @@
+/* eslint-disable strict */
+/* eslint-disable lines-around-directive */
+/* eslint-disable comma-dangle */
+/* eslint-disable func-names */
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define('Restaurant', {
@@ -12,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       notEmpty: true
     }
   }, {});
-  Restaurant.associate = function(models) {
+  Restaurant.associate = (models) => {
     // associations can be defined here
     Restaurant.hasMany(models.Menu_Item);
   };
