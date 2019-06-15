@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       notEmpty: true
     }
   }, {});
-  Restaurant.associate = (models) => {
+  Restaurant.associate = function (models) {
     // associations can be defined here
     Restaurant.hasMany(models.Menu_Item);
   };
