@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 
 // Sets up dotenv
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
 // Sets up the Express App
@@ -35,14 +35,13 @@ app.set("view engine", "handlebars");
 // ROUTES
 var routes = require("./controllers/api_controllers");
 
-
 app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: false }).then(function () {
-    app.listen(server, function () {
-        console.log("App listening on PORT " + server);
-    });
+db.sequelize.sync({ force: false }).then(function() {
+  app.listen(server, function() {
+    console.log("App listening on PORT " + server);
+  });
 });
 
 module.exports = app;
