@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       isAlphanumeric: true
     }
   }, {});
-  Menu_Item.associate = (models) => {
+  Menu_Item.associate = function (models) {
     // associations can be defined here
     Menu_Item.belongsTo(models.Restaurant);
     Menu_Item.hasMany(models.Recipe);
