@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     menu_item: {
       type: DataTypes.STRING,
       allowNull: true,
-      notEmpty: true
+      notEmpty: true,
+      isAlphanumeric: true
     }
   }, {});
   Menu_Item.associate = function(models) {

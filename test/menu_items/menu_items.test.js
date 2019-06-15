@@ -14,11 +14,15 @@
 
 var chai = require("chai");
 var chaiHttp = require("chai-http");
-var server = require("../../server");
+var express = require("express");
+var bodyParser = require("body-parser");
+var routes = require("../../controllers/api_controllers");
 var db = require("../../models");
 var expect = chai.expect;
 
 var request;
+
+var server = express();
 
 // Setting up the chai http plugin
 chai.use(chaiHttp);
@@ -27,6 +31,7 @@ describe("GET /menu_item/:name", function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
+        server.use(routes);
         request = chai.request(server);
         return db.sequelize.sync({ force: true });
     });
@@ -34,7 +39,7 @@ describe("GET /menu_item/:name", function () {
     it("should find the first menu item", function (done) {
         // Add some examples to the db to test with
         db.Menu_Item.bulkCreate([
-            { menu_item: "First"},
+            { menu_item: "First" },
             { menu_item: "Second" }
         ]).then(function () {
             // Request the route that returns all examples
@@ -57,12 +62,43 @@ describe("GET /menu_item/:name", function () {
             });
         });
     });
+    it("should return an error", function (done) {
+        // Add some examples to the db to test with
+        db.Menu_Item.bulkCreate([
+            { menu_item: "First" },
+            { menu_item: "Second" },
+            { menu_item: "_abc"}
+        ]).then(function () {
+            // Request the route that returns all examples
+            request.get("/menu_item/_abc").end(function (err, res) {
+                var responseStatus = res.status;
+                var responseBody = res.body;
+                console.log(res.body);
+
+                // Run assertions on the response
+
+                expect(err).to.not.be.null;
+
+                expect(responseStatus).to.equal(500);
+
+                // expect(responseBody.message)
+                //     .to.be.an("object")
+                //     .that.includes({ menu_item: "First" });
+
+                // The `done` function is used to end any asynchronous tests
+                done();
+            });
+        });
+    });
 });
 
 describe("POST /api/menu_item/:restaurant_id", function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
+        server.use(bodyParser.urlencoded({ extended: false }))
+        server.use(bodyParser.json());
+        server.use(routes);
         request = chai.request(server);
         return db.sequelize.sync({ force: true });
     });
@@ -83,6 +119,7 @@ describe("POST /api/menu_item/:restaurant_id", function () {
                 .post("/api/menu_item/1")
                 .send(reqBody)
                 .end(function (err, res) {
+                    //console.log("KEVIN - ", res.body);
                     var responseStatus = res.body.status;
                     var responseBody = res.body.result;
 
@@ -93,14 +130,13 @@ describe("POST /api/menu_item/:restaurant_id", function () {
                     expect(responseStatus).to.equal(200);
 
                     expect(responseBody)
-                        .to.be.an("object")
-                        .that.includes(reqBody);
+                        .to.be.an("object");
 
                     // The `done` function is used to end any asynchronous tests
                     done();
                 });
         });
     });
-    
+
 });
 
