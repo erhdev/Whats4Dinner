@@ -13,6 +13,9 @@ router.get("/", (req, res) => {
         res.render('index', data);
         return data;
         //console.log(result);
+    }).catch(err => {
+        console.log(err.message);
+        res.json({ status: 500, err: err.message });
     });
 });
 
@@ -29,6 +32,9 @@ router.get("/restaurant/:name", (req, res) => {
        // var data = {restaurant: result}
         //res.render('index' , data);
         res.json({ status: 200, message: result });
+    }).catch(err => {
+        console.log(err.message);
+        res.json({ status: 500, err: err.message });
     });
 });
 
@@ -45,6 +51,9 @@ router.get("/category/:category", (req, res) => {
         //var data = {categories: result}
         //res.render('index' , data);
         res.json({ status: 200, message: result });
+    }).catch(err => {
+        console.log(err.message);
+        res.json({ status: 500, err: err.message });
     });
 });
 
@@ -59,12 +68,12 @@ router.get("/menu_item/:name", (req, res) => {
             model: db.Recipe
         }
     }).then(result => {
-
         //var data = {menu_item: result}
         //res.render('index' , data);
         res.json({ status: 200, message: result });
-
-
+    }).catch(err => {
+        console.log(err.message);
+        res.json({ status: 500, err: err.message });
     });
 });
 
@@ -76,7 +85,8 @@ router.post("/api/restaurant", function (req, res) {
         .then(result =>
             res.json({ status: 200, result: result }))
         .catch(err => {
-            throw err;
+            console.log(err.message);
+            res.json({ status: 500, err: err.message });
         });
 });
 
@@ -84,10 +94,12 @@ router.post("/api/restaurant", function (req, res) {
 router.post("/api/menu_item/:restaurant_id", function (req, res) {
     //console.log(req.body);
     db.Menu_Item.create(req.body)
-        .then(result =>
-            res.json({ status: 200, result: result}))
-        .catch(err => {
-            console.log(err);
+        .then(result => {
+            //console.log(result);
+            res.json({ status: 200, result: result });
+        }).catch(err => {
+            console.log(err.message);
+            res.json({ status: 500, err: err.message });
         });
 });
 
@@ -97,7 +109,8 @@ router.post("/api/recipe/:menu_item_id", function (req, res) {
         .then(result =>
             res.json({ status: 200, result: result }))
         .catch(err => {
-            console.log(err);
+            console.log(err.message);
+            res.json({ status: 500, err: err.message });
         });
 });
 
