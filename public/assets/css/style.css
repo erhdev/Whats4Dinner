@@ -26,7 +26,7 @@ h5 {
     padding: 20px;
 }
 
-#recipe, #ingredients {
+#recipe, #ingredients, #apiResults {
     background-color: rgba(49, 49, 51, 0.8);
     color: white;
     border-radius: 20px;
