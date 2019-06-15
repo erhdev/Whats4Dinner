@@ -39,9 +39,9 @@ describe("GET /", function () {
         ]).then(function () {
             // Request the route that returns all examples
             request.get("/").end(function (err, res) {
-                //console.log(res.body);
+                //console.log(res.text);
                 var responseStatus = res.status;
-                var responseBody = res.body;
+                var responseBody = res.text;
 
                 // Run assertions on the response
 
@@ -49,17 +49,7 @@ describe("GET /", function () {
 
                 expect(responseStatus).to.equal(200);
 
-                expect(responseBody.message)
-                    .to.be.an("array")
-                    .that.has.lengthOf(2);
-
-                expect(responseBody.message[0])
-                    .to.be.an("object")
-                    .that.includes({ restaurant_name: "First Restaurant", restaurant_category: "First Cateogry" });
-
-                expect(responseBody.message[1])
-                    .to.be.an("object")
-                    .that.includes({ restaurant_name: "Second Restaurant", restaurant_category: "Second Cateogry" });
+                expect(responseBody).to.not.be.empty;
 
                 // The `done` function is used to end any asynchronous tests
                 done();
