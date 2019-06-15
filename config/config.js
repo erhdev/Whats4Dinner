@@ -15,10 +15,10 @@ module.exports = {
 
   },
   test: {
-    username: process.env.TEST_DB_USER,
-    password: process.env.TEST_DB_PASS,
+    username: 'root',
+    password: '',
     database: 'test_Whats4Dinner_db',
-    host: process.env.TEST_DB_HOST,
+    host: '127.0.0.1',
     dialect: 'mysql',
     logging: false,
     // insecureAuth: true
