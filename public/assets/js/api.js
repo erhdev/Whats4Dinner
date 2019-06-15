@@ -8,19 +8,20 @@ const options = {
   }
 };
 
-$("#apiSubmit").click(function() {
+$("#apiSubmit").click(() => {
+  // eslint-disable-next-line no-restricted-globals
   event.preventDefault();
   console.log("Submit clicked");
-  var ingredient = $("#apiSearchEntry").val();
+  const ingredient = $("#apiSearchEntry").val();
   axios
     .get(
       `https://www.food2fork.com/api/search?key=${apiKey}&q=${ingredient}`,
       options
     )
     .then(response => {
-      var apiRecipe = $("#apiResults");
+      const apiRecipe = $("#apiResults");
       console.log(response);
-      for (var i = 0; i < 10; i++) {
+      for (let i = 0; i < 10; i++) {
         apiRecipe.append(`<h2>${response.data.recipes[i].title}</h2>`);
         console.log(response.data.recipes[i].title);
         apiRecipe.append(
@@ -30,9 +31,6 @@ $("#apiSubmit").click(function() {
             response.data.recipes[i].image_url
           }'</a>`
         );
-        // console.log(response.data.recipes[i].f2f_url);
-        // apiRecipe.append(`<img class="recipe-images" src='${response.data.recipes[i].image_url}'></img>`);
-        // console.log(response.data.recipes[i].image_url);
       }
     })
     .catch(error => {

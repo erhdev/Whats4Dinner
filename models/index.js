@@ -1,3 +1,11 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable lines-around-directive */
+/* eslint-disable strict */
+/* eslint-disable no-path-concat */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable dot-notation */
+/* eslint-disable arrow-parens */
+/* eslint-disable prefer-template */
 'use strict';
 
 const fs = require('fs');
@@ -17,9 +25,7 @@ if (config.use_env_variable) {
 
 fs
   .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
+  .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach(file => {
     const model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
