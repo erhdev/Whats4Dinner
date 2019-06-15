@@ -42,8 +42,8 @@
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             {{#each restaurant}}
-            <a class='dropdown-item' href='#'>{{restaurant_category}}</a>
-            {{/each}}
+            <a class='dropdown-item' href='#'>{{ restaurant_category }}</a>
+            {{/ each}}
           </div>
         </div>
 
@@ -55,9 +55,9 @@
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             {{#each restaurant}}
-            <a class='dropdown-item' href='#'>{{restaurant_name}}</a>
+            <a class='dropdown-item' href='#'>{{ restaurant_name }}</a>
             <br>
-            {{/each}}
+            {{/ each}}
           </div>
         </div>
       </div>
@@ -115,11 +115,11 @@
     <div class="row text-center" id="recipe-block">
       <div class="col" id="recipe">
         <h3>Recipe</h3>
-        {{instruction}}
+        {{ instruction }}
       </div>
       <div class="col" id="ingredients">
         <h3>Ingredients</h3>
-        {{ingredients}}
+        {{ ingredients }}
       </div>
     </div>
 
@@ -158,6 +158,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/apikey.js"></script>
   <script src="/assets/js/app.js"></script>
   <script src="/assets/js/api.js"></script>
   <script>
