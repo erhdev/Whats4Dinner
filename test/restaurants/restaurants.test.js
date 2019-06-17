@@ -1,10 +1,18 @@
-var chai = require("chai");
-var chaiHttp = require("chai-http");
-var server = require("../../server");
-var db = require("../../models");
-var expect = chai.expect;
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-const */
+/* eslint-disable no-undef */
+/* eslint-disable indent */
+/* eslint-disable func-names */
+/* eslint-disable prefer-arrow-callback */
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let server = require('../../server');
+let db = require('../../models');
 
-var request;
+let expect = chai.expect;
+
+let request;
 
 // Setting up the chai http plugin
 chai.use(chaiHttp);
@@ -23,7 +31,7 @@ chai.use(chaiHttp);
 
 // let request;
 
-describe("GET /", function () {
+describe('GET /', function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
@@ -31,17 +39,16 @@ describe("GET /", function () {
         return db.sequelize.sync({ force: true });
     });
 
-    it("should find all restaurants", function (done) {
+    it('should find all restaurants', function (done) {
         // Add some examples to the db to test with
         db.Restaurant.bulkCreate([
-            { restaurant_name: "First Restaurant", restaurant_category: "First Cateogry" },
-            { restaurant_name: "Second Restaurant", restaurant_category: "Second Cateogry" }
+            { restaurant_name: 'First Restaurant', restaurant_category: 'First Cateogry' },
+            { restaurant_name: 'Second Restaurant', restaurant_category: 'Second Cateogry' },
         ]).then(function () {
             // Request the route that returns all examples
-            request.get("/").end(function (err, res) {
-                //console.log(res.text);
-                var responseStatus = res.status;
-                var responseBody = res.text;
+            request.get('/').end(function (err, res) {
+                let responseStatus = res.status;
+                let responseBody = res.text;
 
                 // Run assertions on the response
 
@@ -58,7 +65,7 @@ describe("GET /", function () {
     });
 });
 
-describe("GET /restaurant/:name", function () {
+describe('GET /restaurant/:name', function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
@@ -66,16 +73,16 @@ describe("GET /restaurant/:name", function () {
         return db.sequelize.sync({ force: true });
     });
 
-    it("should find the first restaurant", function (done) {
+    it('should find the first restaurant', function (done) {
         // Add some examples to the db to test with
         db.Restaurant.bulkCreate([
-            { restaurant_name: "First", restaurant_category: "FirstCateogry" },
-            { restaurant_name: "Second", restaurant_category: "SecondCateogry" }
+            { restaurant_name: 'First', restaurant_category: 'FirstCateogry' },
+            { restaurant_name: 'Second', restaurant_category: 'SecondCateogry' },
         ]).then(function () {
             // Request the route that returns all examples
-            request.get("/restaurant/First").end(function (err, res) {
-                var responseStatus = res.status;
-                var responseBody = res.body;
+            request.get('/restaurant/First').end(function (err, res) {
+                let responseStatus = res.status;
+                let responseBody = res.body;
 
                 // Run assertions on the response
 
@@ -84,27 +91,27 @@ describe("GET /restaurant/:name", function () {
                 expect(responseStatus).to.equal(200);
 
                 expect(responseBody)
-                    .to.be.an("object");
+                    .to.be.an('object');
 
                 expect(responseBody.message)
-                    .to.be.an("object")
-                    .that.includes({ restaurant_name: "First", restaurant_category: "FirstCateogry" });
+                    .to.be.an('object')
+                    .that.includes({ restaurant_name: 'First', restaurant_category: 'FirstCateogry' });
 
                 // The `done` function is used to end any asynchronous tests
                 done();
             });
         });
     });
-    it("should find the second restaurant", function (done) {
+    it('should find the second restaurant', function (done) {
         // Add some examples to the db to test with
         db.Restaurant.bulkCreate([
-            { restaurant_name: "FirstRestaurant", restaurant_category: "FirstCateogry" },
-            { restaurant_name: "SecondRestaurant", restaurant_category: "SecondCateogry" }
+            { restaurant_name: 'FirstRestaurant', restaurant_category: 'FirstCateogry' },
+            { restaurant_name: 'SecondRestaurant', restaurant_category: 'SecondCateogry' },
         ]).then(function () {
             // Request the route that returns all examples
-            request.get("/restaurant/SecondRestaurant").end(function (err, res) {
-                var responseStatus = res.status;
-                var responseBody = res.body;
+            request.get('/restaurant/SecondRestaurant').end(function (err, res) {
+                let responseStatus = res.status;
+                let responseBody = res.body;
 
                 // Run assertions on the response
 
@@ -113,11 +120,11 @@ describe("GET /restaurant/:name", function () {
                 expect(responseStatus).to.equal(200);
 
                 expect(responseBody)
-                    .to.be.an("object");
+                    .to.be.an('object');
 
                 expect(responseBody.message)
-                    .to.be.an("object")
-                    .that.includes({ restaurant_name: "SecondRestaurant", restaurant_category: "SecondCateogry" });
+                    .to.be.an('object')
+                    .that.includes({ restaurant_name: 'SecondRestaurant', restaurant_category: 'SecondCateogry' });
 
                 // The `done` function is used to end any asynchronous tests
                 done();
@@ -126,7 +133,7 @@ describe("GET /restaurant/:name", function () {
     });
 });
 
-describe("GET /category/:category", function () {
+describe('GET /category/:category', function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
@@ -134,17 +141,17 @@ describe("GET /category/:category", function () {
         return db.sequelize.sync({ force: true });
     });
 
-    it("should find all restaurants with the seafood category", function (done) {
+    it('should find all restaurants with the seafood category', function (done) {
         // Add some examples to the db to test with
         db.Restaurant.bulkCreate([
-            { restaurant_name: "First Restaurant", restaurant_category: "italian" },
-            { restaurant_name: "Second Restaurant", restaurant_category: "seafood" },
-            { restaurant_name: "Third Restaurant", restaurant_category: "seafood" }
+            { restaurant_name: 'First Restaurant', restaurant_category: 'italian' },
+            { restaurant_name: 'Second Restaurant', restaurant_category: 'seafood' },
+            { restaurant_name: 'Third Restaurant', restaurant_category: 'seafood' },
         ]).then(function () {
             // Request the route that returns all examples
-            request.get("/category/seafood").end(function (err, res) {
-                var responseStatus = res.status;
-                var responseBody = res.body;
+            request.get('/category/seafood').end(function (err, res) {
+                let responseStatus = res.status;
+                let responseBody = res.body;
 
                 // Run assertions on the response
 
@@ -153,19 +160,19 @@ describe("GET /category/:category", function () {
                 expect(responseStatus).to.equal(200);
 
                 expect(responseBody)
-                    .to.be.an("object");
+                    .to.be.an('object');
 
                 expect(responseBody.message)
-                    .to.be.an("array")
-                    .that.has.length(2)
-                
+                    .to.be.an('array')
+                    .that.has.length(2);
+
                 expect(responseBody.message[0])
                     .to.be.an('object')
-                    .that.includes({ restaurant_name: "Second Restaurant", restaurant_category: "seafood" });
+                    .that.includes({ restaurant_name: 'Second Restaurant', restaurant_category: 'seafood' });
 
                 expect(responseBody.message[1])
                     .to.be.an('object')
-                    .that.includes({ restaurant_name: "Third Restaurant", restaurant_category: "seafood" });
+                    .that.includes({ restaurant_name: 'Third Restaurant', restaurant_category: 'seafood' });
 
                 // The `done` function is used to end any asynchronous tests
                 done();
@@ -174,7 +181,7 @@ describe("GET /category/:category", function () {
     });
 });
 
-describe("POST /api/restaurant", function () {
+describe('GET /restaurantArr', function () {
     // Before each test begins, create a new request server for testing
     // & delete all examples from the db
     beforeEach(function () {
@@ -182,21 +189,55 @@ describe("POST /api/restaurant", function () {
         return db.sequelize.sync({ force: true });
     });
 
-    it("should save an example", function (done) {
+    it('should find all restaurants', function (done) {
+        // Add some examples to the db to test with
+        db.Restaurant.bulkCreate([
+            { restaurant_name: 'First Restaurant', restaurant_category: 'First Cateogry' },
+            { restaurant_name: 'Second Restaurant', restaurant_category: 'Second Cateogry' },
+        ]).then(function () {
+            // Request the route that returns all examples
+            request.get('/restaurantArr').end(function (err, res) {
+                let responseStatus = res.status;
+                let responseBody = res.text;
+
+                // Run assertions on the response
+
+                expect(err).to.be.null;
+
+                expect(responseStatus).to.equal(200);
+
+                expect(responseBody).to.not.be.empty;
+
+                // The `done` function is used to end any asynchronous tests
+                done();
+            });
+        });
+    });
+});
+
+describe('POST /api/restaurant', function () {
+    // Before each test begins, create a new request server for testing
+    // & delete all examples from the db
+    beforeEach(function () {
+        request = chai.request(server);
+        return db.sequelize.sync({ force: true });
+    });
+
+    it('should save an example', function (done) {
         // Create an object to send to the endpoint
-        var reqBody = {
-            restaurant_name: "post_restaurant",
-            restaurant_category: "post_category"
+        let reqBody = {
+            restaurant_name: 'post_restaurant',
+            restaurant_category: 'post_category',
         };
 
         // POST the request body to the server
         request
-            .post("/api/restaurant")
+            .post('/api/restaurant')
             .send(reqBody)
             .end(function (err, res) {
-                var responseStatus = res.body.status;
-                var responseBody = res.body.result;
-                
+                let responseStatus = res.body.status;
+                let responseBody = res.body.result;
+
                 // Run assertions on the response
 
                 expect(err).to.be.null;
@@ -204,7 +245,7 @@ describe("POST /api/restaurant", function () {
                 expect(responseStatus).to.equal(200);
 
                 expect(responseBody)
-                    .to.be.an("object")
+                    .to.be.an('object')
                     .that.includes(reqBody);
 
                 // The `done` function is used to end any asynchronous tests
@@ -212,5 +253,3 @@ describe("POST /api/restaurant", function () {
             });
     });
 });
-
-
