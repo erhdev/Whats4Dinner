@@ -4,7 +4,7 @@
 
 Have you ever really been craving a delicious meal at your favorite restuarant, but funds were a little tight? No need to sacrifice flavor and miss out on an awesome meal. Check out What's 4 Dinner to help you out. With this app, you can select your favorite restaurant, choose your meal, and get an awesome copycat recipe to make at home! You will also have a handy ingredient list to help make the grocery trip a bit easier. If you don't see your favorite restaurant on the list, you can also search for a recipe either using ingredients you have on hand or by entering the meal you want to prepare. Happy cooking!
 
-![homeScreen](https://user-images.githubusercontent.com/21156508/59630016-379d3800-9112-11e9-88f7-d3c57ad9f5a1.png)
+![homeScreen](https://user-images.githubusercontent.com/21156508/59633010-8b5f4f80-9119-11e9-97d7-b51450f92465.png)
 
 ## Installation
 
