@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-loop-func */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
@@ -68,11 +69,9 @@ dropdownItem.click(function () {
 entree.change(function () {
   $.get(`/menu_item/${$(this).val()}`, res => {
     $('#ingredients').append('<ul id="ingredient-list">');
-    console.log(res.message);
     for (let i = 0; i < res.message.Recipes.length; i++) {
       const { ingredient } = res.message.Recipes[i];
-      // console.log(ingredient);
-      if (ingredient == null) {
+      if (ingredient === '' || ingredient === null) {
         $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
       } else {
         $('#ingredient-list').append(`<li>${ingredient}</li>`);
@@ -171,12 +170,38 @@ function nextPrev(n) {
 
 
 // functionality for creating post routes for new items
+// const express = require('express');
+// const db = require('../../../models');
 let nextCount = 3;
 let restaurantId = 0;
 // eslint-disable-next-line camelcase
 let menu_item_Id = 0;
+let restaurantArr = [];
+let restaurantUsed = 0;
+
 $('#nextBtn').click(() => {
-  if (nextCount === 3) {
+  $.get('/restaurantArr')
+    .then(result => {
+      for (let i = 0; i < result.message.length; i++) {
+        restaurantArr.push(result.message[i]);
+      }
+      for (let i = 0; i < restaurantArr.length; i++) {
+        if ($('#newRestaurant').val().toLowerCase() === restaurantArr[i].toLowerCase()) {
+          restaurantUsed += 1;
+          break;
+        }
+      }
+    }).then(() => {
+      // eslint-disable-next-line no-use-before-define
+      dbEntryLogic();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+});
+
+function dbEntryLogic() {
+  if (nextCount === 3 && restaurantUsed === 0) {
     nextCount -= 1;
     const newRestaurant = {
       restaurant_name: $('#newRestaurant').val(),
@@ -189,6 +214,16 @@ $('#nextBtn').click(() => {
       .catch(error => {
         throw error;
       });
+  } else if (nextCount === 3 && restaurantUsed > 0) {
+    nextCount -= 1;
+    const usedRestaurantName = $('#newRestaurant').val();
+    const usedRestaurant = {
+      restaurant_name: usedRestaurantName,
+      // restaurant_category: $('#newRestaurantCat').val(),
+    };
+    $.get(`/restaurant/${usedRestaurantName}`, usedRestaurant).then(result => {
+      restaurantId = result.message.id;
+    });
   } else if (nextCount === 2) {
     nextCount -= 1;
     // eslint-disable-next-line camelcase
@@ -198,7 +233,6 @@ $('#nextBtn').click(() => {
     };
     $.post(`/api/menu_item/${restaurantId}`, newMenu_Item)
       .then(result => {
-        console.log(result);
         // eslint-disable-next-line camelcase
         menu_item_Id = result.result.id;
       })
@@ -209,7 +243,7 @@ $('#nextBtn').click(() => {
     nextCount = 3;
     const ingList = $('#ingredientsInput')
       .val()
-      .split(','); // note to Kevin: was let and worked
+      .split(','); 
 
     for (let i = 0; i < ingList.length; i++) {
       const newIng = ingList[i];
@@ -245,4 +279,4 @@ $('#nextBtn').click(() => {
         });
     }
   }
-});
+}
