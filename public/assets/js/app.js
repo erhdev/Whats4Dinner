@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable arrow-parens */
@@ -123,7 +125,7 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == '') {
+    if (y[i].value === '') {
       // add an "invalid" class to the field:
       y[i].className += ' invalid';
       // and set the current valid status to false:
@@ -228,7 +230,7 @@ $('#nextBtn').click(() => {
       };
       $.post('api/recipe/:menu_item_id', newInstruction)
         .then(() => {
-          $('#regForm').empty().append('<h2>Thanks for adding your recipe!</h2><br><h4>Refresh the page to see it listed.</h4>')
+          $('#regForm').empty().append('<h2>Thanks for adding your recipe!</h2><br><h4>Refresh the page to see it listed.</h4>');
         })
         .catch(error => {
           throw error;
