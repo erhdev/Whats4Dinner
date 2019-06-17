@@ -84,10 +84,17 @@ h1 {
 }
 
 #restaurants {
-  align-content: cetner;
+  align-content: center;
   float: right;
   margin: auto;
   width: 50%;
+}
+
+#reset-button {
+  align-content: center;
+  margin: auto;
+  width: 50%;
+  margin-top: 20px;
 }
 
 #api-entry {
@@ -149,4 +156,31 @@ input.invalid {
 /* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #4caf50;
+}
+
+/* Portrait and Landscape for phones*/
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  #apiSearchEntry {
+    font-size: small;
+  }
+
+  #title {
+    font-size: x-large !important;
+  }
+
+  #select-entree {
+    font-size: small;
+    width: 100%;
+  }
+
+  h2,
+  h4 {
+    font-size: medium;
+  }
+
+  #restaurants,
+  #categories {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,5 +1,8 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-console */
 const express = require('express');
 const db = require('../models');
+
 
 const router = express.Router();
 
@@ -9,14 +12,26 @@ router.get('/', (req, res) => {
     include: [db.Menu_Item],
   }).then((result) => {
     const data = { restaurant: result };
-    // res.json(result);
-    // res.json({ status: 200, message: result });
     res.render('index', data);
-    return data;
-    // console.log(result);
+    // return data;
   }).catch((err) => {
     console.log(err.message);
     res.json({ status: 500, err: err.message });
+  });
+});
+
+router.get('/restaurantArr', (req, res) => {
+  db.Restaurant.findAll({
+    include: [db.Menu_Item],
+  }).then((result) => {
+    // console.log(result[0].dataValues);
+    const restaurantArr = [];
+    for (let i = 0; i < result.length; i++) {
+      const returnRestName = result[i].dataValues.restaurant_name;
+      restaurantArr.push(returnRestName);
+    }
+    // console.log(restaurantArr);
+    res.json({ status: 200, message: restaurantArr });
   });
 });
 
@@ -116,3 +131,4 @@ router.post('/api/recipe/:menu_item_id', (req, res) => {
 });
 
 module.exports = router;
+// module.exprots = restaurantArr;
