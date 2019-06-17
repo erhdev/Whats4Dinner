@@ -189,9 +189,7 @@ $('#nextBtn').click(() => {
       }
       for (let i = 0; i < restaurantArr.length; i++) {
         if ($('#newRestaurant').val().toLowerCase() === restaurantArr[i].toLowerCase()) {
-          console.log('these are equal');
           restaurantUsed += 1;
-          console.log(restaurantUsed);
           break;
         }
       }
