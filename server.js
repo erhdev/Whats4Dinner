@@ -38,6 +38,12 @@ const routes = require('./controllers/api_controllers');
 
 app.use(routes);
 
+// For api key
+const { api_key } = require("./config/apikey");
+app.get("/apikey", function(req, res) {
+  res.send({ api_key });
+});
+
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: true }).then(() => {
   app.listen(server, () => {
