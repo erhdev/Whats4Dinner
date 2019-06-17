@@ -161,14 +161,43 @@ function nextPrev(n) {
 
 
 // functionality for creating post routes for new items
+// const express = require('express');
+// const db = require('../../../models');
 let nextCount = 3;
 let restaurantId = 0;
 // eslint-disable-next-line camelcase
 let menu_item_Id = 0;
+let restaurantArr = [];
+let restaurantUsed = 0;
+let categoryUsed = 0;
+
 $('#nextBtn').click(() => {
-  if (nextCount === 3) {
+  $.get('/restaurantArr')
+    .then(result => {
+      for (let i = 0; i < result.message.length; i++) {
+        restaurantArr.push(result.message[i]);
+      }
+      for (let i = 0; i < restaurantArr.length; i++) {
+        if ($('#newRestaurant').val().toLowerCase() === restaurantArr[i].toLowerCase()) {
+          console.log('these are equal');
+          restaurantUsed += 1;
+          console.log(restaurantUsed);
+          break;
+        }
+      }
+    }).then(() => {
+      dbEntryLogic();
+    })
+    .catch(error => {
+      console.log(error) 
+    });
+});
+
+function dbEntryLogic() {
+  if (nextCount === 3 && restaurantUsed === 0) {
+    console.log('I am here');
     nextCount -= 1;
-    const newRestaurant = {
+    let newRestaurant = {
       restaurant_name: $('#newRestaurant').val(),
       restaurant_category: $('#newRestaurantCat').val(),
     };
@@ -179,6 +208,18 @@ $('#nextBtn').click(() => {
       .catch(error => {
         throw error;
       });
+  } else if (nextCount === 3 && restaurantUsed > 0) { 
+    nextCount -= 1;
+    console.log('Here is where I should be');
+    const usedRestaurantName = $('#newRestaurant').val()
+    const usedRestaurant = {
+      restaurant_name: usedRestaurantName,
+      // restaurant_category: $('#newRestaurantCat').val(),
+    };
+    $.get(`/restaurant/${usedRestaurantName}`, usedRestaurant).then(result => {
+      console.log(result.message.id);
+      restaurantId = result.message.id;
+    });
   } else if (nextCount === 2) {
     nextCount -= 1;
     // eslint-disable-next-line camelcase
@@ -235,4 +276,4 @@ $('#nextBtn').click(() => {
         });
     }
   }
-});
+}
