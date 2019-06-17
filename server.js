@@ -45,7 +45,7 @@ app.get("/apikey", function(req, res) {
 });
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(server, () => {
     console.log(`App listening on PORT ${server}`);
   });

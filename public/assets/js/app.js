@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-loop-func */
 /* eslint-disable consistent-return */
 /* eslint-disable no-console */
@@ -68,11 +69,9 @@ dropdownItem.click(function () {
 entree.change(function () {
   $.get(`/menu_item/${$(this).val()}`, res => {
     $('#ingredients').append('<ul id="ingredient-list">');
-    console.log(res.message);
     for (let i = 0; i < res.message.Recipes.length; i++) {
       const { ingredient } = res.message.Recipes[i];
-      // console.log(ingredient);
-      if (ingredient == null) {
+      if (ingredient === '' || ingredient === null) {
         $('#recipe').append(`<p>${res.message.Recipes[i].instruction}</p>`);
       } else {
         $('#ingredient-list').append(`<li>${ingredient}</li>`);
@@ -179,7 +178,6 @@ let restaurantId = 0;
 let menu_item_Id = 0;
 let restaurantArr = [];
 let restaurantUsed = 0;
-let categoryUsed = 0;
 
 $('#nextBtn').click(() => {
   $.get('/restaurantArr')
@@ -198,13 +196,12 @@ $('#nextBtn').click(() => {
       dbEntryLogic();
     })
     .catch(error => {
-      console.log(error) 
+      console.log(error);
     });
 });
 
 function dbEntryLogic() {
   if (nextCount === 3 && restaurantUsed === 0) {
-    console.log('I am here');
     nextCount -= 1;
     const newRestaurant = {
       restaurant_name: $('#newRestaurant').val(),
@@ -217,16 +214,14 @@ function dbEntryLogic() {
       .catch(error => {
         throw error;
       });
-  } else if (nextCount === 3 && restaurantUsed > 0) { 
+  } else if (nextCount === 3 && restaurantUsed > 0) {
     nextCount -= 1;
-    console.log('Here is where I should be');
-    const usedRestaurantName = $('#newRestaurant').val()
+    const usedRestaurantName = $('#newRestaurant').val();
     const usedRestaurant = {
       restaurant_name: usedRestaurantName,
       // restaurant_category: $('#newRestaurantCat').val(),
     };
     $.get(`/restaurant/${usedRestaurantName}`, usedRestaurant).then(result => {
-      console.log(result.message.id);
       restaurantId = result.message.id;
     });
   } else if (nextCount === 2) {
@@ -238,7 +233,6 @@ function dbEntryLogic() {
     };
     $.post(`/api/menu_item/${restaurantId}`, newMenu_Item)
       .then(result => {
-        console.log(result);
         // eslint-disable-next-line camelcase
         menu_item_Id = result.result.id;
       })
@@ -249,7 +243,7 @@ function dbEntryLogic() {
     nextCount = 3;
     const ingList = $('#ingredientsInput')
       .val()
-      .split(','); // note to Kevin: was let and worked
+      .split(','); 
 
     for (let i = 0; i < ingList.length; i++) {
       const newIng = ingList[i];

@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-console */
 const express = require('express');
 const db = require('../models');
@@ -130,4 +131,4 @@ router.post('/api/recipe/:menu_item_id', (req, res) => {
 });
 
 module.exports = router;
-//module.exprots = restaurantArr;
+// module.exprots = restaurantArr;
