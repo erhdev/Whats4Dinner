@@ -90,6 +90,13 @@ h1 {
   width: 50%;
 }
 
+#reset-button {
+  align-content: center;
+  margin: auto;
+  width: 50%;
+  margin-top: 20px;
+}
+
 #api-entry {
   margin: 40px auto;
   margin-top: 20px;

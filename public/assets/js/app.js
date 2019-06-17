@@ -22,7 +22,7 @@ dropdownItem.click(function () {
   ) {
     $.get(`/category/${$(this).text()}`, res => {
       console.log(res);
-      console.log(res.message[0].Menu_Items[0].menu_item);
+      // console.log(res.message[0].Menu_Items[0].menu_item);
       for (i = 0; i < res.message.length; i++) {
         for (j = 0; j < res.message[i].Menu_Items.length; j++) {
           const currentEntree = res.message[i].Menu_Items[j].menu_item;
@@ -57,6 +57,13 @@ dropdownItem.click(function () {
   // entree.empty();
 });
 
+// $('#restart-button').click(() => {
+//   // eslint-disable-next-line no-restricted-globals
+//   location.reload(true);
+//   $('#recipe').empty();
+//   $('#ingredients').empty();
+// });
+
 // Displays recipe and ingredients upon selecting an entree.
 entree.change(function () {
   $.get(`/menu_item/${$(this).val()}`, res => {
@@ -76,6 +83,7 @@ entree.change(function () {
   });
   entree.empty();
 });
+
 
 function fixStepIndicator(n) {
   // This function removes the "active" class of all steps...
