@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable arrow-parens */
@@ -123,7 +125,7 @@ function validateForm() {
   // A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == '') {
+    if (y[i].value === '') {
       // add an "invalid" class to the field:
       y[i].className += ' invalid';
       // and set the current valid status to false:
@@ -186,6 +188,7 @@ $('#nextBtn').click(() => {
         }
       }
     }).then(() => {
+      // eslint-disable-next-line no-use-before-define
       dbEntryLogic();
     })
     .catch(error => {
@@ -197,7 +200,7 @@ function dbEntryLogic() {
   if (nextCount === 3 && restaurantUsed === 0) {
     console.log('I am here');
     nextCount -= 1;
-    let newRestaurant = {
+    const newRestaurant = {
       restaurant_name: $('#newRestaurant').val(),
       restaurant_category: $('#newRestaurantCat').val(),
     };
@@ -269,7 +272,7 @@ function dbEntryLogic() {
       };
       $.post('api/recipe/:menu_item_id', newInstruction)
         .then(() => {
-          $('#regForm').empty().append('<h2>Thanks for adding your recipe!</h2><br><h4>Refresh the page to see it listed.</h4>')
+          $('#regForm').empty().append('<h2>Thanks for adding your recipe!</h2><br><h4>Refresh the page to see it listed.</h4>');
         })
         .catch(error => {
           throw error;
