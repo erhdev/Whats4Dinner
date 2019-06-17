@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
 // HANDLEBARS
 // Set Handlebars as the default templating engine.
-const exphbs = require("express-handlebars");
+const exphbs = require('express-handlebars');
 
 // Sets up dotenv
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ const app = express();
 const server = process.env.PORT || 8080;
 
 // Requiring our models for syncing
-const db = require("./models");
+const db = require('./models');
 
 // EXPRESS
 // Sets up the Express app to handle data parsing
@@ -30,13 +30,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse application/json
 app.use(bodyParser.json());
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 // ROUTES
-const routes = require("./controllers/api_controllers");
+const routes = require('./controllers/api_controllers');
 
 app.use(routes);
+
+// For api key
+const { api_key } = require("./config/apikey");
+app.get("/apikey", function(req, res) {
+  res.send({ api_key });
+});
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync({ force: false }).then(() => {
