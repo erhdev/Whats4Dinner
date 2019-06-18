@@ -12,6 +12,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+RUN touch ./config/apikey.js
+
 EXPOSE 8080
 CMD [ "npm", "start" ]
 
