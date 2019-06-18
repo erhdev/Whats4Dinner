@@ -243,7 +243,7 @@ function dbEntryLogic() {
     nextCount = 3;
     const ingList = $('#ingredientsInput')
       .val()
-      .split(','); 
+      .split(',');
 
     for (let i = 0; i < ingList.length; i++) {
       const newIng = ingList[i];
