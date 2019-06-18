@@ -3,8 +3,8 @@ FROM node
 # Create app directory
 WORKDIR /usr/src/app
 
-# Create apikey.js file
-RUN touch ./config/apikey.js
+# # Create apikey.js file
+# RUN touch ./config/apikey.js
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
