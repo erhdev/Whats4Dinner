@@ -17,7 +17,7 @@ npm install
 ```
 
 You will also need a Food2Fork API key, which you can obtain [here.](https://www.food2fork.com/about/api)
-Once you have an API key, create an apikey.js file in /config that looks like this:
+Once you have an API key, edit the config/apikey.js file and insert your API key:
 
 ```
 
